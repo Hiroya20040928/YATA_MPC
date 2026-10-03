@@ -1,0 +1,129 @@
+{
+  "purpose": "Maximum BWSC2025 historical residual fit; not yet a validated forward MPC model",
+  "family": {
+    "family": "cat",
+    "name": "cat_d4",
+    "params": {
+      "depth": 4,
+      "iterations": 250,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 20
+    }
+  },
+  "features": [
+    "HGB",
+    "ARX",
+    "Tree",
+    "Filter",
+    "speed_kmh",
+    "distance_km",
+    "elapsed_s",
+    "headwind_mps",
+    "crosswind_mps",
+    "route_grade_smoothed_pct",
+    "residual_lag_1",
+    "residual_lag_3",
+    "residual_lag_6",
+    "residual_lag_12",
+    "shortwave_radiation",
+    "global_tilted_irradiance",
+    "temperature_2m",
+    "wind_speed_10m"
+  ],
+  "training_rows": 16242,
+  "training_scope": "all available BWSC2025 rows including Day6",
+  "base_prediction_inputs": {
+    "HGB": "full-data HistGradientBoosting residual correction",
+    "ARX": "causal online ARX residual correction",
+    "Tree": "causal online tree residual correction",
+    "Filter": "causal residual filter correction"
+  },
+  "validation": {
+    "clean_days_1_5": {
+      "physical_baseline": {
+        "n": 2744,
+        "mae_w": 198.28744976909942,
+        "rmse_w": 314.57280416756964,
+        "p90_abs_error_w": 440.86686251017426,
+        "bias_w": -8.642653071626539
+      },
+      "HGB": {
+        "n": 2744,
+        "mae_w": 107.1229330821331,
+        "rmse_w": 200.51814103746116,
+        "p90_abs_error_w": 221.49535713198586,
+        "bias_w": -38.782470381909555
+      },
+      "global_convex_blend": {
+        "n": 2744,
+        "mae_w": 103.02810175067938,
+        "rmse_w": 199.1967469250512,
+        "p90_abs_error_w": 214.22545381845478,
+        "bias_w": -31.87214966257706
+      },
+      "meta_model": {
+        "n": 2744,
+        "mae_w": 99.70205905917385,
+        "rmse_w": 196.70792187522326,
+        "p90_abs_error_w": 209.25292916301382,
+        "bias_w": -23.78593032469399
+      }
+    },
+    "day6_stress": {
+      "physical_baseline": {
+        "n": 507,
+        "mae_w": 359.55104491557694,
+        "rmse_w": 499.62152828198157,
+        "p90_abs_error_w": 767.24957292252,
+        "bias_w": 21.669511797475625
+      },
+      "HGB": {
+        "n": 507,
+        "mae_w": 158.76115887455683,
+        "rmse_w": 298.9626898114092,
+        "p90_abs_error_w": 353.91837647340753,
+        "bias_w": -21.395487092193072
+      },
+      "global_convex_blend": {
+        "n": 507,
+        "mae_w": 163.1952835440035,
+        "rmse_w": 304.0131489260995,
+        "p90_abs_error_w": 350.3148747688865,
+        "bias_w": -20.312135694261247
+      },
+      "meta_model": {
+        "n": 507,
+        "mae_w": 166.63261615856734,
+        "rmse_w": 308.828157835671,
+        "p90_abs_error_w": 366.42576033284456,
+        "bias_w": -34.44877116443803
+      }
+    }
+  },
+  "all_data_in_sample_metrics": {
+    "physical_baseline": {
+      "n": 16242,
+      "mae_w": 231.7319875650691,
+      "rmse_w": 346.6171308946847,
+      "p90_abs_error_w": 533.3550693888684,
+      "bias_w": 23.608125605305762
+    },
+    "risk_committed_meta_fit": {
+      "n": 16242,
+      "mae_w": 85.45233840971629,
+      "rmse_w": 187.35744229268334,
+      "p90_abs_error_w": 176.0804611250848,
+      "bias_w": -3.080308802580626
+    },
+    "selected_hgb_full_fit": {
+      "n": 16242,
+      "mae_w": 85.2262443985092,
+      "rmse_w": 187.43162016585154,
+      "p90_abs_error_w": 177.75526750060612,
+      "bias_w": -2.455073582272307
+    },
+    "n_rows": 16242,
+    "scope": "in-sample reconstruction score; not a forward performance estimate"
+  },
+  "important_limit": "All-data fit uses training labels. The exact measured-channel oracle is excluded from this predictor. Historical route, speed, and weather are conditional inputs; this does not validate future forecast/MPC errors."
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yata-mpc.local/schemas/telemetry-v1.schema.json",
+  "title": "YATA MPC vehicle telemetry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "vehicle_id", "sequence", "timestamp_utc", "position",
+    "speed_kmh", "hv_bus", "pv_power_w", "event"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "vehicle_id": {"type": "string", "minLength": 1, "maxLength": 64},
+    "sequence": {"type": "integer", "minimum": 0},
+    "timestamp_utc": {"type": "string", "format": "date-time"},
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["latitude_deg", "longitude_deg", "horizontal_accuracy_m", "route_distance_m", "route_id"],
+      "properties": {
+        "latitude_deg": {"type": "number", "minimum": -90, "maximum": 90},
+        "longitude_deg": {"type": "number", "minimum": -180, "maximum": 180},
+        "horizontal_accuracy_m": {"type": "number", "minimum": 0, "maximum": 1000},
+        "route_distance_m": {"type": "number", "minimum": 0},
+        "route_id": {"type": "string", "minLength": 1, "maxLength": 120}
+      }
+    },
+    "speed_kmh": {"type": "number", "minimum": 0, "maximum": 200},
+    "hv_bus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["voltage_v", "battery_current_a", "battery_power_w"],
+      "properties": {
+        "voltage_v": {"type": "number", "exclusiveMinimum": 0, "maximum": 150},
+        "battery_current_a": {"type": "number", "minimum": -200, "maximum": 200},
+        "battery_power_w": {"type": "number", "minimum": -20000, "maximum": 20000}
+      }
+    },
+    "pv_power_w": {"type": "number", "minimum": 0, "maximum": 10000},
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "flags"],
+      "properties": {
+        "phase": {"type": "string", "enum": ["road_day", "control_stop", "traffic_stop", "repair", "overnight", "other"]},
+        "flags": {"type": "array", "items": {"type": "string", "maxLength": 80}, "maxItems": 32}
+      }
+    },
+    "sensors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ambient_temperature_c": {"type": ["number", "null"], "minimum": -40, "maximum": 70},
+        "battery_temperature_c": {"type": ["number", "null"], "minimum": -30, "maximum": 100},
+        "module_temperature_c": {"type": ["number", "null"], "minimum": -30, "maximum": 120},
+        "motor_temperature_c": {"type": ["number", "null"], "minimum": -30, "maximum": 180},
+        "motor_pwm_duty_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "motor_mode": {"type": ["string", "null"], "maxLength": 32}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "gps_valid": {"type": "boolean"},
+        "hv_valid": {"type": "boolean"},
+        "pv_valid": {"type": "boolean"},
+        "source_clock_offset_ms": {"type": ["number", "null"], "minimum": -60000, "maximum": 60000}
+      }
+    }
+  }
+}

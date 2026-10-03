@@ -1,0 +1,334 @@
+{
+  "capacity_ah_fixed_from_10a_discharge_test": 33.164,
+  "resistance_map_source": "8 A vs 10 A lab discharge curves; voltage axis sorted by ascending SOC; endpoints 0 and 100% excluded because differential resistance is negative there.",
+  "constant_R_baseline_clean_lodo": {
+    "mean_day_mae_v": 1.0293962436323203,
+    "mean_day_rmse_v": 1.2344128303145196,
+    "mean_day_bias_v": 0.8995026462525246,
+    "folds": 5
+  },
+  "candidate_summaries_clean_lodo": {
+    "constant_R": {
+      "mean_day_mae_v": 1.0293962436323203,
+      "mean_day_rmse_v": 1.2344128303145196,
+      "mean_day_bias_v": 0.8995026462525246,
+      "folds": 5
+    },
+    "constant_R_plus_train_offset": {
+      "mean_day_mae_v": 0.9547785358824186,
+      "mean_day_rmse_v": 1.105014629897687,
+      "mean_day_bias_v": 0.019537519951272397,
+      "folds": 5
+    },
+    "lab_R_soc_scaled": {
+      "mean_day_mae_v": 0.6724039018936944,
+      "mean_day_rmse_v": 0.783520882111198,
+      "mean_day_bias_v": -0.12812055687104398,
+      "folds": 5
+    },
+    "lab_R_soc_scaled_plus_train_offset": {
+      "mean_day_mae_v": 0.6576245393019692,
+      "mean_day_rmse_v": 0.7650851843991187,
+      "mean_day_bias_v": 0.036336214025076544,
+      "folds": 5
+    }
+  },
+  "best_cv_model": "lab_R_soc_scaled_plus_train_offset",
+  "improvement_over_constant_R_mae_v": 0.3717717043303511,
+  "decision": "Only adopt an SOC-dependent map if it improves held-day MAE materially and its scale is stable. A fitted voltage offset is a predictive discrepancy term, not a change to sensor calibration; do not interpret it as a physical voltage correction without a reference meter.",
+  "folds": [
+    {
+      "held_out_day": 1,
+      "model": "constant_R",
+      "n": 377,
+      "mae_v": 1.8512011948547353,
+      "rmse_v": 2.022076024201458,
+      "bias_measured_minus_model_v": 1.8506861595535398,
+      "p90_abs_error_v": 3.052109440814812,
+      "parameters_json": "{\"r_ohm\": 0.4012656238624978}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 377
+    },
+    {
+      "held_out_day": 1,
+      "model": "constant_R_plus_train_offset",
+      "n": 377,
+      "mae_v": 1.7507915315304379,
+      "rmse_v": 1.930115456822905,
+      "bias_measured_minus_model_v": 1.749740978024846,
+      "p90_abs_error_v": 2.9511642592861254,
+      "parameters_json": "{\"offset_v\": 0.1009451815286937, \"r_ohm\": 0.4012656238624978}",
+      "train_offset_from_measured_minus_predicted_v": 0.1009451815286937,
+      "test_rows_1min": 377
+    },
+    {
+      "held_out_day": 1,
+      "model": "lab_R_soc_scaled",
+      "n": 377,
+      "mae_v": 1.2027874450943161,
+      "rmse_v": 1.3554166568742325,
+      "bias_measured_minus_model_v": 1.1971466604332683,
+      "p90_abs_error_v": 1.9397072849119157,
+      "parameters_json": "{\"scale\": 0.6990726177976572}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 377
+    },
+    {
+      "held_out_day": 1,
+      "model": "lab_R_soc_scaled_plus_train_offset",
+      "n": 377,
+      "mae_v": 1.4219420763958885,
+      "rmse_v": 1.5572064392132148,
+      "bias_measured_minus_model_v": 1.4215828175598868,
+      "p90_abs_error_v": 2.164143442038534,
+      "parameters_json": "{\"offset_v\": -0.22443615712661824, \"scale\": 0.6990726177976572}",
+      "train_offset_from_measured_minus_predicted_v": -0.22443615712661824,
+      "test_rows_1min": 377
+    },
+    {
+      "held_out_day": 2,
+      "model": "constant_R",
+      "n": 121,
+      "mae_v": 1.080147554271677,
+      "rmse_v": 1.3189275828510856,
+      "bias_measured_minus_model_v": 1.0459540533587564,
+      "p90_abs_error_v": 2.0100017283740215,
+      "parameters_json": "{\"r_ohm\": 0.5522383318248459}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 121
+    },
+    {
+      "held_out_day": 2,
+      "model": "constant_R_plus_train_offset",
+      "n": 121,
+      "mae_v": 0.6876101862857074,
+      "rmse_v": 0.8172252094036219,
+      "bias_measured_minus_model_v": -0.14935513321275037,
+      "p90_abs_error_v": 1.2030594880333894,
+      "parameters_json": "{\"offset_v\": 1.1953091865715066, \"r_ohm\": 0.5522383318248459}",
+      "train_offset_from_measured_minus_predicted_v": 1.1953091865715066,
+      "test_rows_1min": 121
+    },
+    {
+      "held_out_day": 2,
+      "model": "lab_R_soc_scaled",
+      "n": 121,
+      "mae_v": 0.41687480377427627,
+      "rmse_v": 0.4430790748177589,
+      "bias_measured_minus_model_v": -0.41371394017334134,
+      "p90_abs_error_v": 0.6442205848296538,
+      "parameters_json": "{\"scale\": 0.6117707090548317}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 121
+    },
+    {
+      "held_out_day": 2,
+      "model": "lab_R_soc_scaled_plus_train_offset",
+      "n": 121,
+      "mae_v": 0.28138819594930137,
+      "rmse_v": 0.3168015458265347,
+      "bias_measured_minus_model_v": -0.27423234162015214,
+      "p90_abs_error_v": 0.5047389862764646,
+      "parameters_json": "{\"offset_v\": -0.1394815985531892, \"scale\": 0.6117707090548317}",
+      "train_offset_from_measured_minus_predicted_v": -0.1394815985531892,
+      "test_rows_1min": 121
+    },
+    {
+      "held_out_day": 3,
+      "model": "constant_R",
+      "n": 254,
+      "mae_v": 0.5837113001378879,
+      "rmse_v": 0.7472292700277314,
+      "bias_measured_minus_model_v": 0.15801586410499463,
+      "p90_abs_error_v": 1.1381807162486726,
+      "parameters_json": "{\"r_ohm\": 0.4895985920504155}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 254
+    },
+    {
+      "held_out_day": 3,
+      "model": "constant_R_plus_train_offset",
+      "n": 254,
+      "mae_v": 1.013649105317276,
+      "rmse_v": 1.168071431732499,
+      "bias_measured_minus_model_v": -0.9115965669923741,
+      "p90_abs_error_v": 1.8070562143346578,
+      "parameters_json": "{\"offset_v\": 1.0696124310973687, \"r_ohm\": 0.4895985920504155}",
+      "train_offset_from_measured_minus_predicted_v": 1.0696124310973687,
+      "test_rows_1min": 254
+    },
+    {
+      "held_out_day": 3,
+      "model": "lab_R_soc_scaled",
+      "n": 254,
+      "mae_v": 0.8251439272195141,
+      "rmse_v": 1.0348948936943019,
+      "bias_measured_minus_model_v": -0.802315005254436,
+      "p90_abs_error_v": 1.804641151621053,
+      "parameters_json": "{\"scale\": 0.5983019831917314}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 254
+    },
+    {
+      "held_out_day": 3,
+      "model": "lab_R_soc_scaled_plus_train_offset",
+      "n": 254,
+      "mae_v": 0.7244268525637252,
+      "rmse_v": 0.9433538699323148,
+      "bias_measured_minus_model_v": -0.6801606064586216,
+      "p90_abs_error_v": 1.6824867528252387,
+      "parameters_json": "{\"offset_v\": -0.12215439879581425, \"scale\": 0.5983019831917314}",
+      "train_offset_from_measured_minus_predicted_v": -0.12215439879581425,
+      "test_rows_1min": 254
+    },
+    {
+      "held_out_day": 4,
+      "model": "constant_R",
+      "n": 352,
+      "mae_v": 0.6709709171317836,
+      "rmse_v": 0.8474946838142952,
+      "bias_measured_minus_model_v": 0.6369281597938425,
+      "p90_abs_error_v": 1.4369005590954211,
+      "parameters_json": "{\"r_ohm\": 0.4615164469415543}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 352
+    },
+    {
+      "held_out_day": 4,
+      "model": "constant_R_plus_train_offset",
+      "n": 352,
+      "mae_v": 0.49739332296673006,
+      "rmse_v": 0.5935872815786561,
+      "bias_measured_minus_model_v": -0.19943947075946936,
+      "p90_abs_error_v": 0.9377956391010276,
+      "parameters_json": "{\"offset_v\": 0.8363676305533119, \"r_ohm\": 0.4615164469415543}",
+      "train_offset_from_measured_minus_predicted_v": 0.8363676305533119,
+      "test_rows_1min": 352
+    },
+    {
+      "held_out_day": 4,
+      "model": "lab_R_soc_scaled",
+      "n": 352,
+      "mae_v": 0.33740144312425285,
+      "rmse_v": 0.42339124474561796,
+      "bias_measured_minus_model_v": -0.15836957884142153,
+      "p90_abs_error_v": 0.6768329291451949,
+      "parameters_json": "{\"scale\": 0.6144469986239232}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 352
+    },
+    {
+      "held_out_day": 4,
+      "model": "lab_R_soc_scaled_plus_train_offset",
+      "n": 352,
+      "mae_v": 0.3353644785713904,
+      "rmse_v": 0.4035671107199861,
+      "bias_measured_minus_model_v": 0.09320509766124899,
+      "p90_abs_error_v": 0.6576128263658305,
+      "parameters_json": "{\"offset_v\": -0.2515746765026705, \"scale\": 0.6144469986239232}",
+      "train_offset_from_measured_minus_predicted_v": -0.2515746765026705,
+      "test_rows_1min": 352
+    },
+    {
+      "held_out_day": 5,
+      "model": "constant_R",
+      "n": 335,
+      "mae_v": 0.9609502517655178,
+      "rmse_v": 1.2363365906780284,
+      "bias_measured_minus_model_v": 0.8059289944514895,
+      "p90_abs_error_v": 1.9364301227470322,
+      "parameters_json": "{\"r_ohm\": 0.5330445390575475}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 335
+    },
+    {
+      "held_out_day": 5,
+      "model": "constant_R_plus_train_offset",
+      "n": 335,
+      "mae_v": 0.8244485333119411,
+      "rmse_v": 1.016073769950753,
+      "bias_measured_minus_model_v": -0.3916622073038902,
+      "p90_abs_error_v": 1.6043847825644721,
+      "parameters_json": "{\"offset_v\": 1.1975912017553796, \"r_ohm\": 0.5330445390575475}",
+      "train_offset_from_measured_minus_predicted_v": 1.1975912017553796,
+      "test_rows_1min": 335
+    },
+    {
+      "held_out_day": 5,
+      "model": "lab_R_soc_scaled",
+      "n": 335,
+      "mae_v": 0.5798118902561127,
+      "rmse_v": 0.6608225404240786,
+      "bias_measured_minus_model_v": -0.46335092051928944,
+      "p90_abs_error_v": 1.016393051695832,
+      "parameters_json": "{\"scale\": 0.6054110632380912}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 335
+    },
+    {
+      "held_out_day": 5,
+      "model": "lab_R_soc_scaled_plus_train_offset",
+      "n": 335,
+      "mae_v": 0.52500109302954,
+      "rmse_v": 0.6044969563035428,
+      "bias_measured_minus_model_v": -0.3787138970169793,
+      "p90_abs_error_v": 0.9372043041409768,
+      "parameters_json": "{\"offset_v\": -0.08463702350231017, \"scale\": 0.6054110632380912}",
+      "train_offset_from_measured_minus_predicted_v": -0.08463702350231017,
+      "test_rows_1min": 335
+    },
+    {
+      "held_out_day": 6,
+      "model": "constant_R",
+      "n": 185,
+      "mae_v": 0.712006560238758,
+      "rmse_v": 0.8759382854565918,
+      "bias_measured_minus_model_v": -0.31897940356812504,
+      "p90_abs_error_v": 1.3821513473688525,
+      "parameters_json": "{\"r_ohm\": 0.4875327067473722}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 185
+    },
+    {
+      "held_out_day": 6,
+      "model": "constant_R_plus_train_offset",
+      "n": 185,
+      "mae_v": 1.2507744397473848,
+      "rmse_v": 1.4262100494391394,
+      "bias_measured_minus_model_v": -1.1698525911811435,
+      "p90_abs_error_v": 2.213263669283688,
+      "parameters_json": "{\"offset_v\": 0.8508731876130184, \"r_ohm\": 0.4875327067473722}",
+      "train_offset_from_measured_minus_predicted_v": 0.8508731876130184,
+      "test_rows_1min": 185
+    },
+    {
+      "held_out_day": 6,
+      "model": "lab_R_soc_scaled",
+      "n": 185,
+      "mae_v": 1.8744141736000823,
+      "rmse_v": 1.9225844741118465,
+      "bias_measured_minus_model_v": -1.8725817029766176,
+      "p90_abs_error_v": 2.261887841044836,
+      "parameters_json": "{\"scale\": 0.6386328223158657}",
+      "train_offset_from_measured_minus_predicted_v": 0.0,
+      "test_rows_1min": 185
+    },
+    {
+      "held_out_day": 6,
+      "model": "lab_R_soc_scaled_plus_train_offset",
+      "n": 185,
+      "mae_v": 1.7268784572064029,
+      "rmse_v": 1.7776366645296047,
+      "bias_measured_minus_model_v": -1.7234335743819147,
+      "p90_abs_error_v": 2.112739712450133,
+      "parameters_json": "{\"offset_v\": -0.14914812859470317, \"scale\": 0.6386328223158657}",
+      "train_offset_from_measured_minus_predicted_v": -0.14914812859470317,
+      "test_rows_1min": 185
+    }
+  ],
+  "limitations": [
+    "Voltage-only SOC is not independent truth; each day is initialized from its own bus voltage.",
+    "The 8 A and 10 A tests have different discharge energy and may differ in temperature, cutoff, or cell state.",
+    "The 5-second source is reduced to one-minute medians for CV; folds, not rows, are the independent unit."
+  ]
+}

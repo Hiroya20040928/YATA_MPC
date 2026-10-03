@@ -1,0 +1,519 @@
+{
+  "target": "Solar_Watt[W] ZP channel; direct HV-bus sum after MPPT outputs, per team statement",
+  "weather_driver": "shortwave_radiation_instant",
+  "weather_resolution": "local hourly means; upstream Open-Meteo route samples were spatial/time interpolations, not colocated pyranometer observations",
+  "eligible_hour_bins": 23,
+  "eligible_days": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "fit_posture": "moving only: event_phase=road_day and speed >=5 km/h; at least 80% of hourly source rows must meet this condition",
+  "posture_note": "Moving panel posture is fixed relative to the body. The user confirms no panel tilt was used at BWSC2025 Control Stops; posture changes may occur at night or emergency stops. Parked/charging rows are excluded from the moving fit.",
+  "day6_heldout_hour_bins": 2,
+  "day6_heldout_metrics": {
+    "n_hour_bins": 2,
+    "mae_w": 112.92335311587703,
+    "rmse_w": 113.2490023460515,
+    "bias_measured_minus_model_w": -112.92335311587703,
+    "r2": -12.330291016065797,
+    "day": 6,
+    "used_in_fit": false
+  },
+  "day6_telemetry_anomaly_hour_bins_in_full_log": 3,
+  "known_event_hours_excluded_from_fit": 17,
+  "panel_design_basis": {
+    "collector_area_user_approx_m2": 6.0,
+    "cell_count_provisional": 386,
+    "cell_area_datasheet_m2": 0.015500692,
+    "calculated_cell_area_total_m2": 5.983267112,
+    "cell_pmax_range_w": [
+      3.72,
+      3.78
+    ],
+    "cell_efficiency_range_pct": [
+      24.0,
+      24.4
+    ],
+    "gross_array_stc_range_w_before_encapsulation_mppt_mismatch": [
+      1435.92,
+      1459.08
+    ],
+    "effective_gain_upper_m2_from_gross_stc_max": 1.45908,
+    "count_note": "386 is a provisional area-based assumption, not the count from the layout image already supplied by the user. Replace it with the transcribed image count before using cell-count-based STC totals or area-normalized efficiency."
+  },
+  "model_candidates": {
+    "ghi_through_origin": {
+      "kind": "ghi_through_origin",
+      "parameters": {
+        "gain_m2": 1.0088939227711335
+      },
+      "scale_w": 89.38262516504561,
+      "df": 4.0,
+      "log_likelihood": -140.73611785195973,
+      "optimizer_success": true,
+      "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "n": 23
+    },
+    "ambient_temperature_proxy": {
+      "kind": "ambient_temperature_proxy",
+      "parameters": {
+        "gain_m2": 1.0084146211078542,
+        "gamma_per_c": 0.0006113492485918786
+      },
+      "scale_w": 89.34792370184854,
+      "df": 4.0,
+      "log_likelihood": -140.7270767041944,
+      "optimizer_success": true,
+      "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "n": 23
+    },
+    "fixed_body_plane_poa": {
+      "kind": "fixed_body_plane_poa",
+      "parameters": {
+        "gain_m2": 0.9940849355900715,
+        "tilt_deg": 5.232152140616711,
+        "heading_offset_deg": -146.82691084132833
+      },
+      "scale_w": 43.96835805043874,
+      "df": 4.0,
+      "log_likelihood": -125.46477948419202,
+      "optimizer_success": true,
+      "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "n": 23
+    },
+    "faceted_body_poa": {
+      "kind": "faceted_body_poa",
+      "parameters": {
+        "gain_m2": 1.0679177657289785,
+        "facet_gains_m2": {
+          "roof": 1.0174915807021943,
+          "front": 1.9735842625859807e-06,
+          "rear": 0.04453906608760337,
+          "left_side": 1.9735842625859807e-06,
+          "right_side": 0.005883171770655533
+        }
+      },
+      "scale_w": 45.1589873145069,
+      "df": 4.0,
+      "log_likelihood": -126.65532731035624,
+      "optimizer_success": true,
+      "optimizer_message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "n": 23
+    }
+  },
+  "leave_one_race_day_out": {
+    "ghi_through_origin": [
+      {
+        "held_out_day": 1,
+        "n_hour_bins": 5,
+        "mae_w": 133.39217221559838,
+        "rmse_w": 163.54121915129062,
+        "bias_measured_minus_model_w": -118.58459344449216,
+        "r2": 0.2360221995471271,
+        "gain_m2": 1.0373828546175927,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 2,
+        "n_hour_bins": 2,
+        "mae_w": 148.9272158388046,
+        "rmse_w": 163.256723322385,
+        "bias_measured_minus_model_w": -148.9272158388046,
+        "r2": 0.5973806009250354,
+        "gain_m2": 1.0278734238651819,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 3,
+        "n_hour_bins": 6,
+        "mae_w": 76.58746684934822,
+        "rmse_w": 80.2795862899824,
+        "bias_measured_minus_model_w": 57.196313223032156,
+        "r2": 0.9033874174324144,
+        "gain_m2": 0.9726382668852969,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 4,
+        "n_hour_bins": 6,
+        "mae_w": 78.34588728442226,
+        "rmse_w": 88.6116786521879,
+        "bias_measured_minus_model_w": 29.654727004433568,
+        "r2": 0.8343008092625995,
+        "gain_m2": 0.9796906659855017,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 5,
+        "n_hour_bins": 4,
+        "mae_w": 86.55158788259178,
+        "rmse_w": 92.43742944275921,
+        "bias_measured_minus_model_w": 24.605877709494855,
+        "r2": 0.70520021951117,
+        "gain_m2": 1.0061716842234874,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      }
+    ],
+    "ambient_temperature_proxy": [
+      {
+        "held_out_day": 1,
+        "n_hour_bins": 5,
+        "mae_w": 135.37805197649186,
+        "rmse_w": 166.2651477880867,
+        "bias_measured_minus_model_w": -124.75228599369771,
+        "r2": 0.2103607586714641,
+        "gain_m2": 1.036968235376337,
+        "gamma_per_c": 0.0019071240298436233,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 2,
+        "n_hour_bins": 2,
+        "mae_w": 151.5769452121239,
+        "rmse_w": 164.2812347325481,
+        "bias_measured_minus_model_w": -151.5769452121239,
+        "r2": 0.5923114994895,
+        "gain_m2": 1.0272362878154644,
+        "gamma_per_c": 0.0013234977317970235,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 3,
+        "n_hour_bins": 6,
+        "mae_w": 111.32120017687225,
+        "rmse_w": 120.46319156792627,
+        "bias_measured_minus_model_w": 98.70635704298554,
+        "r2": 0.7824634831265557,
+        "gain_m2": 0.9578773641278899,
+        "gamma_per_c": -0.0073878206015416765,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 4,
+        "n_hour_bins": 6,
+        "mae_w": 134.72720179508462,
+        "rmse_w": 141.79018522772495,
+        "bias_measured_minus_model_w": 110.45292301799743,
+        "r2": 0.5757412585368513,
+        "gain_m2": 0.9304721173209293,
+        "gamma_per_c": 0.01,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      },
+      {
+        "held_out_day": 5,
+        "n_hour_bins": 4,
+        "mae_w": 86.88263033597372,
+        "rmse_w": 92.29371586735687,
+        "bias_measured_minus_model_w": 27.35675248401588,
+        "r2": 0.7061161644202003,
+        "gain_m2": 1.0053402370878715,
+        "gamma_per_c": 0.0006588860971191222,
+        "tilt_deg": null,
+        "heading_offset_deg": null
+      }
+    ],
+    "fixed_body_plane_poa": [
+      {
+        "held_out_day": 1,
+        "n_hour_bins": 5,
+        "mae_w": 98.17137764230687,
+        "rmse_w": 117.6667894656632,
+        "bias_measured_minus_model_w": -98.17137764230687,
+        "r2": 0.6045112947760876,
+        "gain_m2": 1.0368291906299711,
+        "gamma_per_c": null,
+        "tilt_deg": 3.012502236718496,
+        "heading_offset_deg": -143.97647815885634
+      },
+      {
+        "held_out_day": 2,
+        "n_hour_bins": 2,
+        "mae_w": 31.53694050738889,
+        "rmse_w": 38.118500531445704,
+        "bias_measured_minus_model_w": -21.411246255163206,
+        "r2": 0.9780505237419249,
+        "gain_m2": 0.9913801225062479,
+        "gamma_per_c": null,
+        "tilt_deg": 5.3837974205933055,
+        "heading_offset_deg": -135.56236355366562
+      },
+      {
+        "held_out_day": 3,
+        "n_hour_bins": 6,
+        "mae_w": 52.21744494731265,
+        "rmse_w": 65.24393577541807,
+        "bias_measured_minus_model_w": 52.21744494731265,
+        "r2": 0.936187796272236,
+        "gain_m2": 0.925272985721343,
+        "gamma_per_c": null,
+        "tilt_deg": 9.558035834922073,
+        "heading_offset_deg": -127.82602790874564
+      },
+      {
+        "held_out_day": 4,
+        "n_hour_bins": 6,
+        "mae_w": 35.789738983339014,
+        "rmse_w": 40.09185806296683,
+        "bias_measured_minus_model_w": 3.145647815190889,
+        "r2": 0.9660803917387353,
+        "gain_m2": 0.9744286613619835,
+        "gamma_per_c": null,
+        "tilt_deg": 6.714539420945959,
+        "heading_offset_deg": -153.77630300812484
+      },
+      {
+        "held_out_day": 5,
+        "n_hour_bins": 4,
+        "mae_w": 49.80448178869161,
+        "rmse_w": 50.74331517398435,
+        "bias_measured_minus_model_w": -2.740830158450187,
+        "r2": 0.9111639764424628,
+        "gain_m2": 0.9741328414247435,
+        "gamma_per_c": null,
+        "tilt_deg": 7.206257625286601,
+        "heading_offset_deg": -152.62483095712662
+      }
+    ],
+    "faceted_body_poa": [
+      {
+        "held_out_day": 1,
+        "n_hour_bins": 5,
+        "mae_w": 103.56614652318278,
+        "rmse_w": 125.36826927923502,
+        "bias_measured_minus_model_w": -103.56614652318278,
+        "r2": 0.5510463176491281,
+        "gain_m2": 1.0892947072470822,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null,
+        "facet_roof_gain_m2": 1.0335115821854037,
+        "facet_front_gain_m2": 5.542067094909257e-06,
+        "facet_rear_gain_m2": 0.03925137175619802,
+        "facet_left_side_gain_m2": 5.542067094909257e-06,
+        "facet_right_side_gain_m2": 0.016520669171290882
+      },
+      {
+        "held_out_day": 2,
+        "n_hour_bins": 2,
+        "mae_w": 34.26160286872977,
+        "rmse_w": 36.47476585503241,
+        "bias_measured_minus_model_w": -12.512038724559886,
+        "r2": 0.9799027067138527,
+        "gain_m2": 1.068996599138026,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null,
+        "facet_roof_gain_m2": 1.0115741058906667,
+        "facet_front_gain_m2": 7.192982336575893e-06,
+        "facet_rear_gain_m2": 0.035966129135819945,
+        "facet_left_side_gain_m2": 7.192982336575893e-06,
+        "facet_right_side_gain_m2": 0.02144197814686598
+      },
+      {
+        "held_out_day": 3,
+        "n_hour_bins": 6,
+        "mae_w": 36.291150130668875,
+        "rmse_w": 42.55795069133398,
+        "bias_measured_minus_model_w": 14.66998736589872,
+        "r2": 0.9728490609962456,
+        "gain_m2": 1.0460666124903961,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null,
+        "facet_roof_gain_m2": 1.033528331333307,
+        "facet_front_gain_m2": 2.084229128741286e-06,
+        "facet_rear_gain_m2": 0.006321113230685138,
+        "facet_left_side_gain_m2": 2.084229128741286e-06,
+        "facet_right_side_gain_m2": 0.006212999468146366
+      },
+      {
+        "held_out_day": 4,
+        "n_hour_bins": 6,
+        "mae_w": 38.96657504179015,
+        "rmse_w": 44.72738349169665,
+        "bias_measured_minus_model_w": 12.96659537164975,
+        "r2": 0.9577831868964578,
+        "gain_m2": 1.064830236941789,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null,
+        "facet_roof_gain_m2": 0.9799441811835823,
+        "facet_front_gain_m2": 1.1030523548746806e-07,
+        "facet_rear_gain_m2": 0.08455701987784245,
+        "facet_left_side_gain_m2": 1.1030523453322591e-07,
+        "facet_right_side_gain_m2": 0.0003288152698943309
+      },
+      {
+        "held_out_day": 5,
+        "n_hour_bins": 4,
+        "mae_w": 39.55554132353123,
+        "rmse_w": 43.501061817010076,
+        "bias_measured_minus_model_w": -10.542255277091357,
+        "r2": 0.9347123327096855,
+        "gain_m2": 1.0742378462758633,
+        "gamma_per_c": null,
+        "tilt_deg": null,
+        "heading_offset_deg": null,
+        "facet_roof_gain_m2": 0.9958306930544203,
+        "facet_front_gain_m2": 3.8727766828684175e-06,
+        "facet_rear_gain_m2": 0.06685482308325146,
+        "facet_left_side_gain_m2": 3.8727766828684175e-06,
+        "facet_right_side_gain_m2": 0.01154458458482559
+      }
+    ]
+  },
+  "lodo_mean_mae_w": {
+    "ghi_through_origin": 104.76086601415304,
+    "ambient_temperature_proxy": 123.97720589930927,
+    "fixed_body_plane_poa": 53.503996773807806,
+    "faceted_body_poa": 50.528203177580565
+  },
+  "poa_candidate_fold_angle_diagnostic": {
+    "stable_enough_for_selection": true,
+    "fold_tilt_range_deg": [
+      3.012502236718496,
+      9.558035834922073
+    ],
+    "fold_heading_offset_circular_resultant": 0.9849811010137256,
+    "selection_rule": "Only select fitted fixed plane when day-blocked MAE improves by >=2%, fold tilts span <=10 degrees, and heading-offset circular resultant >=0.8."
+  },
+  "faceted_body_candidate_diagnostic": {
+    "stable_enough_for_selection": true,
+    "candidate_lodo_mean_mae_w": 50.528203177580565,
+    "fold_mean_facet_gains_m2": {
+      "roof": 1.0108777787294758,
+      "front": 3.7604720957164644e-06,
+      "rear": 0.046590091416759405,
+      "left_side": 3.7604720955256156e-06,
+      "right_side": 0.011209809328204631
+    },
+    "fold_facet_gain_cv": {
+      "roof": 0.02079344108174294,
+      "front": 0.00024940861335125033,
+      "rear": 0.57916158159518,
+      "left_side": 0.00024940861337918155,
+      "right_side": 0.6632375059395851
+    },
+    "selection_rule": "Only select the roof+four-vertical-facet hypothesis if day-blocked MAE improves by >=5%, every facet with mean gain >0.05 m2 has CV <=0.75 across folds, and total-gain CV <=0.25."
+  },
+  "selected_model": "faceted_body_poa",
+  "selected_fit_metrics": {
+    "n_hour_bins": 23,
+    "mae_w": 45.911902749607755,
+    "rmse_w": 64.96638481089582,
+    "bias_measured_minus_model_w": -18.9744553867641,
+    "r2": 0.936890825229453
+  },
+  "selected_day_metrics": [
+    {
+      "day": 1,
+      "n_hour_bins": 5,
+      "mae_w": 92.67055584364337,
+      "rmse_w": 118.55586913862143,
+      "bias_measured_minus_model_w": -92.67055584364337,
+      "r2": 0.598512161486204
+    },
+    {
+      "day": 2,
+      "n_hour_bins": 2,
+      "mae_w": 30.697221790947538,
+      "rmse_w": 31.512067999862992,
+      "bias_measured_minus_model_w": -7.119761509022965,
+      "r2": 0.9849994785979478
+    },
+    {
+      "day": 3,
+      "n_hour_bins": 6,
+      "mae_w": 31.434375719180053,
+      "rmse_w": 38.10487186382843,
+      "bias_measured_minus_model_w": 4.879930387120463,
+      "r2": 0.9782337079977557
+    },
+    {
+      "day": 4,
+      "n_hour_bins": 6,
+      "mae_w": 32.036522536388496,
+      "rmse_w": 38.85664223338724,
+      "bias_measured_minus_model_w": 8.837242568180784,
+      "r2": 0.9681382961248562
+    },
+    {
+      "day": 5,
+      "n_hour_bins": 4,
+      "mae_w": 37.600287726863776,
+      "rmse_w": 41.952669004310856,
+      "bias_measured_minus_model_w": -10.280802347779805,
+      "r2": 0.939277362449564
+    }
+  ],
+  "selected_day6_heldout_metrics": {
+    "n_hour_bins": 2,
+    "mae_w": 112.92335311587703,
+    "rmse_w": 113.2490023460515,
+    "bias_measured_minus_model_w": -112.92335311587703,
+    "r2": -12.330291016065797,
+    "day": 6,
+    "used_in_fit": false
+  },
+  "residual_correlations_spearman_descriptive": {
+    "ghi": {
+      "spearman_rho": 0.5256916996047432,
+      "p_value_descriptive_only": 0.009987982109574413,
+      "n": 23
+    },
+    "temp_c": {
+      "spearman_rho": -0.3359683794466403,
+      "p_value_descriptive_only": 0.11703240429458724,
+      "n": 23
+    },
+    "wind_speed_10m": {
+      "spearman_rho": 0.04743083003952569,
+      "p_value_descriptive_only": 0.8298409595078379,
+      "n": 23
+    },
+    "cloud_cover": {
+      "spearman_rho": -0.4112931625045599,
+      "p_value_descriptive_only": 0.05120278602653205,
+      "n": 23
+    },
+    "Speed[kmh]": {
+      "spearman_rho": 0.1057312252964427,
+      "p_value_descriptive_only": 0.63112690245656,
+      "n": 23
+    },
+    "distance_from_darwin_m": {
+      "spearman_rho": 0.2648221343873518,
+      "p_value_descriptive_only": 0.2220234550460932,
+      "n": 23
+    }
+  },
+  "effective_gain_m2": 1.0679177657289785,
+  "area_equivalent_operating_efficiency_pct": 17.8484053233587,
+  "thermal_interpretation": "No module temperature is measured. The selected fit uses ambient temperature only if it improves blocked-by-day error by 2%; any fitted gamma is an empirical proxy and must not be presented as a cell/module temperature coefficient.",
+  "limitations": [
+    "The cell sheet supplies cell STC values, not a certified encapsulated array/module nameplate.",
+    "Collector area and cell count are not yet verified from an original-resolution electrical layout.",
+    "Panel orientation is fixed in motion but its normal/curvature relative to the vehicle body is not measured; Open-Meteo GHI therefore remains a proxy for plane-of-array irradiance.",
+    "No module temperature sensor. Ambient temperature cannot identify the actual cell temperature or temperature coefficient.",
+    "HV ZP solar power has MPPT aggregation, cable and conversion effects; observed effective gain includes orientation, shading, mismatch, temperature and DC conversion.",
+    "Hourly means and day-blocked validation avoid 5-second pseudoreplication, but only a small number of daylight bins remain; coefficients are provisional.",
+    "Day 2 MPPT crimp incident and Day 5 tire/hatch incident windows are excluded from the healthy PV fit; original diagnostic table preserves all hourly records."
+  ]
+}

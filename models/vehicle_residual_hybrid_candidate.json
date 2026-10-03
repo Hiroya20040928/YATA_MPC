@@ -1,0 +1,27 @@
+{
+  "model_type": "fixed RBF residual GP plus causal same-day median6 innovation bias",
+  "stage": "research_candidate_not_connected_to_replay_grafana_or_commands",
+  "production_ready": false,
+  "gp_signal_sd_w": 60.0,
+  "gp_noise_sd_w": 100.0,
+  "gp_length_scale_standardized": 1.5,
+  "gp_features": [
+    "speed_kmh",
+    "relative_air_speed_mps",
+    "grade_pct",
+    "temperature_c",
+    "air_density_kgm3"
+  ],
+  "online_history_blocks": 6,
+  "block_minutes": 5,
+  "minimum_eligible_rows_per_block": 20,
+  "maximum_history_gap_minutes": 10,
+  "total_correction_cap_w": 100,
+  "validation": {
+    "hybrid_noise100_mae_w": 56.64679616538938,
+    "simple_online_median6_mae_w": 57.06502184906484,
+    "incremental_gain_w": 0.418225683675459
+  },
+  "selection_caveat": "One of multiple residual-model alternatives explored on the same five clean day folds; outer-CV score is exploratory and selection-biased.",
+  "deployment_gate_met": false
+}

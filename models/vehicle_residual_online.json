@@ -1,0 +1,86 @@
+{
+  "model_type": "causal bounded online residual bias",
+  "stage": "shadow_candidate_not_connected_to_replay_or_grafana",
+  "selected_rule": "median_prev6",
+  "block_minutes": 5,
+  "minimum_eligible_rows_per_block": 20,
+  "max_history_gap_minutes": 10.0,
+  "bias_cap_w": 100.0,
+  "scope": "same-day next 5-minute eligible road-power prediction only; reset after gaps; not integrated with race replay, Grafana, or actuator commands",
+  "evidence": {
+    "nested_clean_days_1_5_baseline_mae_w": 70.20383813447573,
+    "nested_clean_days_1_5_corrected_mae_w": 57.06502184906484,
+    "improvement_pct": 18.71523927259281,
+    "paired_day_wins": 4,
+    "nested_clean_p90_abs_error_before_after_w": {
+      "baseline_abs_error_w": 142.03883359153812,
+      "corrected_abs_error_w": 130.72422996406658
+    },
+    "row_level_5s_clean_mae_before_after_w": {
+      "baseline": 217.86156362943544,
+      "corrected": 213.03222069245166
+    },
+    "outer_fold_rule_selections": [
+      {
+        "held_out_day": 1,
+        "selected_rule_from_other_days": "median_prev6",
+        "blocks": 71,
+        "baseline_mae_w": 69.76300378183562,
+        "adapted_mae_w": 61.7764361946006,
+        "baseline_p90_abs_error_w": 134.24644402933967,
+        "adapted_p90_abs_error_w": 147.40856870514745,
+        "paired_baseline_mae_w": 58.59954901899761,
+        "paired_adapted_mae_w": 48.98859480385033,
+        "correction_blocks": 59
+      },
+      {
+        "held_out_day": 2,
+        "selected_rule_from_other_days": "median_prev6",
+        "blocks": 33,
+        "baseline_mae_w": 67.75384663740108,
+        "adapted_mae_w": 57.028983937183966,
+        "baseline_p90_abs_error_w": 126.49390341466011,
+        "adapted_p90_abs_error_w": 137.6414497362102,
+        "paired_baseline_mae_w": 74.82123791433852,
+        "paired_adapted_mae_w": 57.96788224256875,
+        "correction_blocks": 21
+      },
+      {
+        "held_out_day": 3,
+        "selected_rule_from_other_days": "median_prev6",
+        "blocks": 72,
+        "baseline_mae_w": 72.05376278483692,
+        "adapted_mae_w": 53.305511568670845,
+        "baseline_p90_abs_error_w": 144.4817124625915,
+        "adapted_p90_abs_error_w": 127.51214736873418,
+        "paired_baseline_mae_w": 69.49158006479026,
+        "paired_adapted_mae_w": 46.99367860539095,
+        "correction_blocks": 60
+      },
+      {
+        "held_out_day": 4,
+        "selected_rule_from_other_days": "median_prev3",
+        "blocks": 18,
+        "baseline_mae_w": 65.99504243431926,
+        "adapted_mae_w": 69.61362382764108,
+        "baseline_p90_abs_error_w": 137.57451818575478,
+        "adapted_p90_abs_error_w": 103.64786368091127,
+        "paired_baseline_mae_w": 67.8336274924547,
+        "paired_adapted_mae_w": 72.1759251644409,
+        "correction_blocks": 15
+      },
+      {
+        "held_out_day": 5,
+        "selected_rule_from_other_days": "median_prev6",
+        "blocks": 39,
+        "baseline_mae_w": 71.60672803749428,
+        "adapted_mae_w": 49.66729716016809,
+        "baseline_p90_abs_error_w": 145.13685253150032,
+        "adapted_p90_abs_error_w": 107.64458664566787,
+        "paired_baseline_mae_w": 79.15347640152748,
+        "paired_adapted_mae_w": 47.46318735650079,
+        "correction_blocks": 27
+      }
+    ]
+  }
+}

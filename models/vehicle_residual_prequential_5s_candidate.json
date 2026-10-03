@@ -1,0 +1,80 @@
+{
+  "model_type": "past_only_selected_5s_residual_filter",
+  "stage": "shadow_candidate_not_connected_to_replay_grafana_or_commands",
+  "production_ready": false,
+  "clean_days_1_5": {
+    "baseline": {
+      "n": 13711,
+      "mae_w": 219.80543724581457,
+      "rmse_w": 330.7932677973234,
+      "p90_abs_error_w": 509.2890215608411,
+      "bias_w": 13.36446859317863
+    },
+    "past_only_filter": {
+      "n": 13711,
+      "mae_w": 122.44962224425566,
+      "rmse_w": 223.99535845401192,
+      "p90_abs_error_w": 280.9893854596292,
+      "bias_w": 4.15015322114781
+    },
+    "improvement_pct": 44.291813806536176,
+    "day_wins": 5,
+    "warm_state_day_wins": 5,
+    "warm_state_baseline": {
+      "n": 12631,
+      "mae_w": 214.6928625745327,
+      "rmse_w": 325.17027989001116,
+      "p90_abs_error_w": 491.4288634880643,
+      "bias_w": 9.10497307237221
+    },
+    "warm_state_filter": {
+      "n": 12631,
+      "mae_w": 109.0127438597537,
+      "rmse_w": 203.51735951114733,
+      "p90_abs_error_w": 245.17132531079824,
+      "bias_w": -0.8972023742206613
+    }
+  },
+  "day6_stress": {
+    "baseline": {
+      "n": 2531,
+      "mae_w": 296.3408107287589,
+      "rmse_w": 422.15167445098984,
+      "p90_abs_error_w": 647.6267033459487,
+      "bias_w": 79.1003347294761
+    },
+    "past_only_filter": {
+      "n": 2531,
+      "mae_w": 160.33222465522977,
+      "rmse_w": 299.99454338881276,
+      "p90_abs_error_w": 386.2792169071471,
+      "bias_w": 9.953858591427485
+    }
+  },
+  "selected_configuration_counts": {
+    "ar1(300),cap=1000W": 1752,
+    "persistence(1),cap=1000W": 1320,
+    "persistence(1),cap=500W": 1080,
+    "persistence(0.75),cap=1000W": 924,
+    "persistence(0.75),cap=500W": 900,
+    "ar1(300),cap=500W": 865,
+    "ar1(120),cap=1000W": 777,
+    "ar1(300),cap=300W": 660,
+    "ar1(60),cap=500W": 540,
+    "persistence(1),cap=300W": 480,
+    "ar1(120),cap=500W": 480,
+    "ar1(300),cap=200W": 480,
+    "ar1(120),cap=300W": 389,
+    "persistence(1),cap=200W": 360,
+    "ar1(60),cap=1000W": 304,
+    "ar1(60),cap=300W": 240,
+    "ar1(120),cap=200W": 240,
+    "ar1(300),cap=100W": 240,
+    "ar1(120),cap=100W": 180,
+    "ar1(60),cap=200W": 180,
+    "persistence(0.75),cap=300W": 120,
+    "persistence(0.75),cap=200W": 60,
+    "ewma(0.75),cap=100W": 60
+  },
+  "validation": "past-only nested one-step evaluation; tuning is repeated every 60 completed samples; current 5-second target is never used before its prediction"
+}

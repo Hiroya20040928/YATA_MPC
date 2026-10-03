@@ -1,0 +1,12 @@
+apiVersion: 1
+providers:
+  - name: YATA MPC local dashboard
+    orgId: 1
+    folder: YATA MPC
+    type: file
+    disableDeletion: true
+    updateIntervalSeconds: 30
+    allowUiUpdates: false
+    options:
+      path: C:/Users/user/OneDrive - 和歌山大学/ソーラー/エネマネ/YATA_MPC/grafana/dashboards
+      foldersFromFilesStructure: false

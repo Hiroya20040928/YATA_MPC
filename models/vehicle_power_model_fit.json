@@ -1,0 +1,166 @@
+{
+  "target": "Solar_Watt[W] + Battery_Watt[W]; direct HV bus balance proxy",
+  "fit_method": "Student-t (df=4) maximum likelihood on 10 km route-distance segment means",
+  "features": {
+    "rolling": "314 kg * g * 0.0035 * cos(route grade) * distance",
+    "aerodynamic": "0.5 * modeled air density * 0.08876 m2 * signed relative-air-speed-squared * distance",
+    "grade": "314 kg * g * endpoint DEM elevation change"
+  },
+  "p_aux_w_stationary_median": 67.60000000000002,
+  "weak_system_measured_w_component": 21.0,
+  "fit_days": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "held_out_anomaly_day": 6,
+  "segment_count_fit": 162,
+  "segment_count_day6": 22,
+  "fit_parameters": {
+    "success": true,
+    "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "parameters": {
+      "p_aux_w": 67.60000000000002,
+      "beta_roll": 0.9176384158957354,
+      "beta_aero": 1.5345130195856331,
+      "beta_grade": 0.7413144699080707,
+      "student_t_scale_w": 46.94299448597034
+    },
+    "negative_log_likelihood": 889.2762768387192,
+    "df": 4.0,
+    "n": 162
+  },
+  "fit_metrics_days1to5": {
+    "n": 162,
+    "mae_w": 44.93780475093868,
+    "rmse_w": 57.48362145454482,
+    "bias_measured_minus_model_w": 0.6959214505407075,
+    "p90_abs_error_w": 101.9658158505098
+  },
+  "leave_one_clean_day_out": [
+    {
+      "held_out_day": 1,
+      "n": 39,
+      "mae_w": 55.112059716913414,
+      "rmse_w": 67.3935355694725,
+      "bias_measured_minus_model_w": 9.862454689705368,
+      "p90_abs_error_w": 101.30917419665391,
+      "train_segments": 123,
+      "test_segments": 39
+    },
+    {
+      "held_out_day": 2,
+      "n": 53,
+      "mae_w": 37.51461352820875,
+      "rmse_w": 46.45118714217193,
+      "bias_measured_minus_model_w": -15.962850448843124,
+      "p90_abs_error_w": 81.90028734235689,
+      "train_segments": 109,
+      "test_segments": 53
+    },
+    {
+      "held_out_day": 3,
+      "n": 41,
+      "mae_w": 62.32877966674149,
+      "rmse_w": 77.28532658201586,
+      "bias_measured_minus_model_w": 44.78102397727832,
+      "p90_abs_error_w": 132.71523072188097,
+      "train_segments": 121,
+      "test_segments": 41
+    },
+    {
+      "held_out_day": 4,
+      "n": 8,
+      "mae_w": 55.99494611927048,
+      "rmse_w": 77.18717398754221,
+      "bias_measured_minus_model_w": 47.70542856441159,
+      "p90_abs_error_w": 124.27439692053002,
+      "train_segments": 154,
+      "test_segments": 8
+    },
+    {
+      "held_out_day": 5,
+      "n": 21,
+      "mae_w": 55.7961141565302,
+      "rmse_w": 68.54926111028584,
+      "bias_measured_minus_model_w": -14.235267363510806,
+      "p90_abs_error_w": 110.49682411514004,
+      "train_segments": 141,
+      "test_segments": 21
+    }
+  ],
+  "day6_fully_held_out_metrics": {
+    "n": 22,
+    "mae_w": 80.9981608826843,
+    "rmse_w": 95.64353503125211,
+    "bias_measured_minus_model_w": 74.60843261006026,
+    "p90_abs_error_w": 150.50081248145253,
+    "day": 6,
+    "segments": 22,
+    "used_in_fit": false
+  },
+  "resolution_comparison": [
+    {
+      "segment_width_km": 2.5,
+      "segment_count": 753,
+      "clean_day_lodo_mae_w": 88.2849223149072
+    },
+    {
+      "segment_width_km": 5.0,
+      "segment_count": 376,
+      "clean_day_lodo_mae_w": 61.26842694193495
+    },
+    {
+      "segment_width_km": 10.0,
+      "segment_count": 184,
+      "clean_day_lodo_mae_w": 51.313597398348065
+    }
+  ],
+  "design_priors": {
+    "car_mass_without_driver_kg": 234.0,
+    "regulatory_occupant_mass_floor_kg": 80.0,
+    "combined_floor_proxy_kg": 314.0,
+    "cd_a_m2": 0.08876,
+    "crr": 0.0035,
+    "tire_outer_diameter_m": 0.5584,
+    "wheel_count": 3,
+    "gear_ratio": 1.0
+  },
+  "motor_bench_reference": {
+    "sheet": "ECO_LO",
+    "motor_serial": "M2096D-III-152",
+    "controller_serial": "Mitsuba retained controller; not confirmed as installed unit",
+    "date": "2023-09-15",
+    "measurement_uncertainty_power_pct": 0.05,
+    "measurement_uncertainty_torque_pct": 0.1,
+    "efficiency_at_800w_input_pct": 90.50876437356231,
+    "efficiency_at_1000w_input_pct": 91.99820375616301,
+    "efficiency_at_1200w_input_pct": 92.7920542862515,
+    "speed_range_kmh_as_reported_by_bench": [
+      70.742262,
+      83.04709
+    ],
+    "vehicle_speed_range_kmh_at_user_tire_diameter": [
+      70.92143907514483,
+      83.25743293030509
+    ],
+    "notes": "Closest ECO bench curve. It is a one-dimensional full-command curve; it is not a PWM-ECO operating surface and is used only as a prior/reference."
+  },
+  "conditional_physical_equivalents_at_bench_efficiency": {
+    "assumed_efficiency": 0.9199820375616301,
+    "effective_cd_a_m2_if_eco_lo_1kw_efficiency_applies": 0.12530465902420682,
+    "effective_crr_if_eco_lo_1kw_efficiency_applies": 0.002954738008602048,
+    "grade_equivalent_mass_kg_if_eco_lo_1kw_efficiency_applies": 214.14674290098324,
+    "warning": "Conditional diagnostics only. The grade-equivalent mass falls below vehicle dry mass, proving at least one grade/route/regen/measurement assumption is not physical; do not use these as true fitted parameters."
+  },
+  "interpretation": "beta_roll, beta_aero, beta_grade absorb errors in design priors, DEM grade, modeled wind, installed motor/controller efficiency and ZP bias. They cannot be reported as true Crr/CdA/mass/efficiency. beta_grade materially differs from physical unity; it is evidence that route grade/energy/regeneration/measurement are not independently identified.",
+  "limits": [
+    "Distance is anchor-scaled from speed, not GPS truth; route elevation is DEM-derived.",
+    "The 80 kg occupant is the regulatory floor only; actual weighed driver mass is unknown.",
+    "Stationary 67.6 W is the observed total HV-bus-load proxy; the confirmed 21 W weak-system load is included within it and must not be added again.",
+    "D5 tire replacement and hatch-related interval are excluded from healthy cruise fit; periods remain in original joined CSV and event records.",
+    "The D6 fit is held out because its ZP anomaly was already documented; its positive bias is retained as a model adequacy warning."
+  ]
+}

@@ -1,0 +1,2958 @@
+{
+  "id": null,
+  "uid": "yata-bwsc2025-local",
+  "title": "YATA MPC | BWSC2025 Shadow Operations",
+  "description": "BWSC2025 historical replay and two-layer MPC shadow advisory. No vehicle actuation is connected.",
+  "tags": [
+    "YATA",
+    "BWSC2025",
+    "local",
+    "replay",
+    "shadow-MPC"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 41,
+  "version": 1,
+  "refresh": "5s",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m"
+    ],
+    "time_options": [
+      "15m",
+      "1h",
+      "3h",
+      "6h"
+    ]
+  },
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "運用ステータス",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 3
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "## BWSC2025 ログ再生 / MPC シャドー提案　|　再生 1×　|　**実測テレメトリとMPC提案を分離表示**\n\n本画面は2025年の43,963行をローカル再生しています。MPC値は実車に出力した指令ではなく、Grafana上からも車両制御は行いません。地図は公式ルートの再構成線上に再生中のログ距離を投影します。"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "速度（ログ実測）",
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "speed_kmh",
+              "text": "実測速度",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "velocityKmh",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "実測速度"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "上位MPC目標（シャドー）",
+      "gridPos": {
+        "x": 4,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "target_speed_kmh",
+              "text": "巡航目標",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "velocityKmh",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "巡航目標"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "推定バッテリー残量",
+      "gridPos": {
+        "x": 8,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "soc_estimate_pct",
+              "text": "残量",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 15
+              },
+              {
+                "color": "green",
+                "value": 30
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "残量"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "推定蓄電エネルギー",
+      "gridPos": {
+        "x": 12,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "energy_wh",
+              "text": "蓄電量",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "wattHour",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "蓄電量"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "バッテリー電力（符号付ログ値）",
+      "gridPos": {
+        "x": 16,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "battery_power_w",
+              "text": "Battery_Watt",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "Battery_Watt"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "PV合算出力（ZPログ）",
+      "gridPos": {
+        "x": 20,
+        "y": 3,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "pv_power_w",
+              "text": "PV出力",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "PV出力"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 8,
+      "type": "stat",
+      "title": "HVバス電圧",
+      "gridPos": {
+        "x": 0,
+        "y": 7,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "battery_voltage_v",
+              "text": "電圧",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "volt",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "電圧"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 9,
+      "type": "stat",
+      "title": "バッテリー電流",
+      "gridPos": {
+        "x": 4,
+        "y": 7,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "battery_current_a",
+              "text": "電流",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "amp",
+          "decimals": 2,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "電流"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 10,
+      "type": "stat",
+      "title": "外気温（Open-Meteo再解析）",
+      "gridPos": {
+        "x": 8,
+        "y": 7,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "air_temp_c",
+              "text": "気温",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "気温"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 11,
+      "type": "stat",
+      "title": "風速（Open-Meteo再解析）",
+      "gridPos": {
+        "x": 12,
+        "y": 7,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "wind_speed_ms",
+              "text": "風速",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "velocityms",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "風速"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 12,
+      "type": "stat",
+      "title": "瞬時日射（Open-Meteo再解析）",
+      "gridPos": {
+        "x": 16,
+        "y": 7,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "irradiance_w_m2",
+              "text": "日射",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "wattpermsquared",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "日射"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 13,
+      "type": "stat",
+      "title": "予報ラン経過時間",
+      "gridPos": {
+        "x": 20,
+        "y": 7,
+        "w": 4,
+        "h": 4
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "forecast_age_h",
+              "text": "予報経過",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "hour",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 12
+              }
+            ]
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "displayName": "予報経過"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "noValue": "—"
+      },
+      "pluginVersion": "13.2.3",
+      "description": ""
+    },
+    {
+      "id": 14,
+      "type": "geomap",
+      "title": "BWSCルート / 現在位置 / 記録イベント",
+      "description": "Geomapの車両点は5秒ごとに更新します。ルートと大会記録イベントは公式ルート資料に基づく固定レイヤーです。地図背景はOpenStreetMapタイルを使用します。",
+      "gridPos": {
+        "x": 0,
+        "y": 11,
+        "w": 15,
+        "h": 18
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/current",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "latitude",
+              "text": "latitude",
+              "type": "number"
+            },
+            {
+              "selector": "longitude",
+              "text": "longitude",
+              "type": "number"
+            },
+            {
+              "selector": "speed_kmh",
+              "text": "車速 km/h",
+              "type": "number"
+            },
+            {
+              "selector": "distance_km",
+              "text": "距離 km",
+              "type": "number"
+            },
+            {
+              "selector": "replay_day",
+              "text": "Day",
+              "type": "number"
+            },
+            {
+              "selector": "race_time_local",
+              "text": "大会ログ時刻",
+              "type": "string"
+            },
+            {
+              "selector": "target_speed_kmh",
+              "text": "MPC目標 km/h",
+              "type": "number"
+            },
+            {
+              "selector": "soc_estimate_pct",
+              "text": "推定残量 %",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "view": {
+          "id": "coords",
+          "lat": -25.7,
+          "lon": 134.0,
+          "zoom": 4,
+          "allLayers": true
+        },
+        "controls": {
+          "showZoom": true,
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showScale": true,
+          "showMeasure": false,
+          "showDebug": false
+        },
+        "tooltip": {
+          "mode": "details"
+        },
+        "basemap": {
+          "config": {},
+          "name": "OpenStreetMap",
+          "type": "osm-standard"
+        },
+        "layers": [
+          {
+            "type": "geojson",
+            "name": "走行ルートとイベント地点",
+            "config": {
+              "src": "http://127.0.0.1:8123/api/route.geojson",
+              "rules": []
+            },
+            "tooltip": true
+          },
+          {
+            "type": "markers",
+            "name": "再生中の車両位置",
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "mode": "coords",
+              "latitude": "latitude",
+              "longitude": "longitude"
+            },
+            "config": {
+              "showLegend": true,
+              "style": {
+                "size": {
+                  "fixed": 10,
+                  "min": 8,
+                  "max": 14
+                },
+                "color": {
+                  "fixed": "#00D4FF"
+                },
+                "opacity": 1,
+                "symbol": {
+                  "mode": "fixed",
+                  "fixed": "img/icons/marker/circle.svg"
+                },
+                "rotation": {
+                  "fixed": 0,
+                  "mode": "mod",
+                  "min": -360,
+                  "max": 360
+                }
+              }
+            },
+            "tooltip": true
+          }
+        ]
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 15,
+      "type": "table",
+      "title": "制御器の状態 / 判断根拠",
+      "description": "上位30分MPC、下位30秒MPC、予報run時刻、予備制約を表示。",
+      "gridPos": {
+        "x": 15,
+        "y": 11,
+        "w": 9,
+        "h": 10
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/decision",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "項目",
+              "text": "項目",
+              "type": "string"
+            },
+            {
+              "selector": "値",
+              "text": "値",
+              "type": "string"
+            },
+            {
+              "selector": "補足",
+              "text": "補足",
+              "type": "string"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "countRows": false,
+          "fields": ""
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 16,
+      "type": "table",
+      "title": "運用確認 / 現在ログの警報判定",
+      "description": "実測ログのイベント、MPC求解状態、暫定15%残量条件を確認します。警報はログとモデル出力から算出し、車両へ指令しません。",
+      "gridPos": {
+        "x": 15,
+        "y": 21,
+        "w": 9,
+        "h": 8
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/alerts",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "severity",
+              "text": "判定",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "状態",
+              "type": "string"
+            },
+            {
+              "selector": "item",
+              "text": "内容",
+              "type": "string"
+            },
+            {
+              "selector": "distance_km",
+              "text": "距離 km",
+              "type": "number"
+            },
+            {
+              "selector": "solver",
+              "text": "上位ソルバー",
+              "type": "string"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "countRows": false,
+          "fields": ""
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 17,
+      "type": "timeseries",
+      "title": "走行速度と上位MPCの巡航目標",
+      "description": "直近1時間のログ再生。MPC目標は上位再計画間では直前値を保持します。",
+      "gridPos": {
+        "x": 0,
+        "y": 29,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/series",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "time_ms",
+              "text": "Time",
+              "type": "timestamp_epoch_ms"
+            },
+            {
+              "selector": "speed_kmh",
+              "text": "speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "target_speed_kmh",
+              "text": "target_speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "battery_power_w",
+              "text": "battery_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "pv_power_w",
+              "text": "pv_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "battery_voltage_v",
+              "text": "battery_voltage_v",
+              "type": "number"
+            },
+            {
+              "selector": "battery_current_a",
+              "text": "battery_current_a",
+              "type": "number"
+            },
+            {
+              "selector": "energy_wh",
+              "text": "energy_wh",
+              "type": "number"
+            },
+            {
+              "selector": "air_temp_c",
+              "text": "air_temp_c",
+              "type": "number"
+            },
+            {
+              "selector": "irradiance_w_m2",
+              "text": "irradiance_w_m2",
+              "type": "number"
+            },
+            {
+              "selector": "wind_speed_ms",
+              "text": "wind_speed_ms",
+              "type": "number"
+            },
+            {
+              "selector": "measured_load_proxy_w",
+              "text": "measured_load_proxy_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_vehicle_load_w",
+              "text": "predicted_vehicle_load_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_pv_w",
+              "text": "predicted_pv_w",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "velocityKmh",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "速度 [km/h]",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "speed_kmh"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ログ実測速度"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "target_speed_kmh"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "MPC目標（シャドー）"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 18,
+      "type": "timeseries",
+      "title": "HVバッテリー電力とPV出力",
+      "description": "両系列は既存ログの値をそのまま表示します。Battery_Wattの正負は計測器の符号定義を別途確認してください。",
+      "gridPos": {
+        "x": 12,
+        "y": 29,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/series",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "time_ms",
+              "text": "Time",
+              "type": "timestamp_epoch_ms"
+            },
+            {
+              "selector": "speed_kmh",
+              "text": "speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "target_speed_kmh",
+              "text": "target_speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "battery_power_w",
+              "text": "battery_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "pv_power_w",
+              "text": "pv_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "battery_voltage_v",
+              "text": "battery_voltage_v",
+              "type": "number"
+            },
+            {
+              "selector": "battery_current_a",
+              "text": "battery_current_a",
+              "type": "number"
+            },
+            {
+              "selector": "energy_wh",
+              "text": "energy_wh",
+              "type": "number"
+            },
+            {
+              "selector": "air_temp_c",
+              "text": "air_temp_c",
+              "type": "number"
+            },
+            {
+              "selector": "irradiance_w_m2",
+              "text": "irradiance_w_m2",
+              "type": "number"
+            },
+            {
+              "selector": "wind_speed_ms",
+              "text": "wind_speed_ms",
+              "type": "number"
+            },
+            {
+              "selector": "measured_load_proxy_w",
+              "text": "measured_load_proxy_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_vehicle_load_w",
+              "text": "predicted_vehicle_load_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_pv_w",
+              "text": "predicted_pv_w",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "電力 [W]",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "battery_power_w"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Battery_Watt（符号付ログ値）"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pv_power_w"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Solar_Watt / ZPログ"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 19,
+      "type": "timeseries",
+      "title": "電力モデル実測整合（負荷・PV）",
+      "description": "測定値とモデル予測値を重ね、走行中の差を視認します。負荷代理値はHVバスログ由来で、独立したトルク計測値ではありません。",
+      "gridPos": {
+        "x": 0,
+        "y": 38,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/series",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "time_ms",
+              "text": "Time",
+              "type": "timestamp_epoch_ms"
+            },
+            {
+              "selector": "speed_kmh",
+              "text": "speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "target_speed_kmh",
+              "text": "target_speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "battery_power_w",
+              "text": "battery_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "pv_power_w",
+              "text": "pv_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "battery_voltage_v",
+              "text": "battery_voltage_v",
+              "type": "number"
+            },
+            {
+              "selector": "battery_current_a",
+              "text": "battery_current_a",
+              "type": "number"
+            },
+            {
+              "selector": "energy_wh",
+              "text": "energy_wh",
+              "type": "number"
+            },
+            {
+              "selector": "air_temp_c",
+              "text": "air_temp_c",
+              "type": "number"
+            },
+            {
+              "selector": "irradiance_w_m2",
+              "text": "irradiance_w_m2",
+              "type": "number"
+            },
+            {
+              "selector": "wind_speed_ms",
+              "text": "wind_speed_ms",
+              "type": "number"
+            },
+            {
+              "selector": "measured_load_proxy_w",
+              "text": "measured_load_proxy_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_vehicle_load_w",
+              "text": "predicted_vehicle_load_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_pv_w",
+              "text": "predicted_pv_w",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "電力 [W]",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "measured_load_proxy_w"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "負荷代理値（実測算出）"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predicted_vehicle_load_w"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "車両モデル推定"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pv_power_w"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "PV実測ログ"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "predicted_pv_w"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "PVモデル推定"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 20,
+      "type": "timeseries",
+      "title": "推定バッテリー蓄電量",
+      "description": "3011 Whは理論容量。SOCは電圧アンカーとログ電力積分による推定で、BMS真値ではありません。",
+      "gridPos": {
+        "x": 12,
+        "y": 38,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/series",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "time_ms",
+              "text": "Time",
+              "type": "timestamp_epoch_ms"
+            },
+            {
+              "selector": "speed_kmh",
+              "text": "speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "target_speed_kmh",
+              "text": "target_speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "battery_power_w",
+              "text": "battery_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "pv_power_w",
+              "text": "pv_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "battery_voltage_v",
+              "text": "battery_voltage_v",
+              "type": "number"
+            },
+            {
+              "selector": "battery_current_a",
+              "text": "battery_current_a",
+              "type": "number"
+            },
+            {
+              "selector": "energy_wh",
+              "text": "energy_wh",
+              "type": "number"
+            },
+            {
+              "selector": "air_temp_c",
+              "text": "air_temp_c",
+              "type": "number"
+            },
+            {
+              "selector": "irradiance_w_m2",
+              "text": "irradiance_w_m2",
+              "type": "number"
+            },
+            {
+              "selector": "wind_speed_ms",
+              "text": "wind_speed_ms",
+              "type": "number"
+            },
+            {
+              "selector": "measured_load_proxy_w",
+              "text": "measured_load_proxy_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_vehicle_load_w",
+              "text": "predicted_vehicle_load_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_pv_w",
+              "text": "predicted_pv_w",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "wattHour",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "蓄電量 [Wh]",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "energy_wh"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "3011 Wh設計容量基準の推定蓄電量"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 21,
+      "type": "timeseries",
+      "title": "気温と風速（Open-Meteo履歴推定）",
+      "description": "モジュール温度センサはありません。ここに表示する気温と風速はログ時刻・距離に対応するOpen-Meteo履歴値です。",
+      "gridPos": {
+        "x": 0,
+        "y": 47,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/series",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "time_ms",
+              "text": "Time",
+              "type": "timestamp_epoch_ms"
+            },
+            {
+              "selector": "speed_kmh",
+              "text": "speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "target_speed_kmh",
+              "text": "target_speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "battery_power_w",
+              "text": "battery_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "pv_power_w",
+              "text": "pv_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "battery_voltage_v",
+              "text": "battery_voltage_v",
+              "type": "number"
+            },
+            {
+              "selector": "battery_current_a",
+              "text": "battery_current_a",
+              "type": "number"
+            },
+            {
+              "selector": "energy_wh",
+              "text": "energy_wh",
+              "type": "number"
+            },
+            {
+              "selector": "air_temp_c",
+              "text": "air_temp_c",
+              "type": "number"
+            },
+            {
+              "selector": "irradiance_w_m2",
+              "text": "irradiance_w_m2",
+              "type": "number"
+            },
+            {
+              "selector": "wind_speed_ms",
+              "text": "wind_speed_ms",
+              "type": "number"
+            },
+            {
+              "selector": "measured_load_proxy_w",
+              "text": "measured_load_proxy_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_vehicle_load_w",
+              "text": "predicted_vehicle_load_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_pv_w",
+              "text": "predicted_pv_w",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "axisPlacement": "left",
+            "axisLabel": "気温 [°C]",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "air_temp_c"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "外気温"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "wind_speed_ms"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "風速"
+              },
+              {
+                "id": "unit",
+                "value": "velocityms"
+              },
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 22,
+      "type": "timeseries",
+      "title": "瞬時日射量（Open-Meteo履歴推定）",
+      "description": "PV実測電力と照合する外部気象の日射指標です。車体面POA日射を直接計測した値ではありません。",
+      "gridPos": {
+        "x": 12,
+        "y": 47,
+        "w": 12,
+        "h": 9
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/series",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "time_ms",
+              "text": "Time",
+              "type": "timestamp_epoch_ms"
+            },
+            {
+              "selector": "speed_kmh",
+              "text": "speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "target_speed_kmh",
+              "text": "target_speed_kmh",
+              "type": "number"
+            },
+            {
+              "selector": "battery_power_w",
+              "text": "battery_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "pv_power_w",
+              "text": "pv_power_w",
+              "type": "number"
+            },
+            {
+              "selector": "battery_voltage_v",
+              "text": "battery_voltage_v",
+              "type": "number"
+            },
+            {
+              "selector": "battery_current_a",
+              "text": "battery_current_a",
+              "type": "number"
+            },
+            {
+              "selector": "energy_wh",
+              "text": "energy_wh",
+              "type": "number"
+            },
+            {
+              "selector": "air_temp_c",
+              "text": "air_temp_c",
+              "type": "number"
+            },
+            {
+              "selector": "irradiance_w_m2",
+              "text": "irradiance_w_m2",
+              "type": "number"
+            },
+            {
+              "selector": "wind_speed_ms",
+              "text": "wind_speed_ms",
+              "type": "number"
+            },
+            {
+              "selector": "measured_load_proxy_w",
+              "text": "measured_load_proxy_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_vehicle_load_w",
+              "text": "predicted_vehicle_load_w",
+              "type": "number"
+            },
+            {
+              "selector": "predicted_pv_w",
+              "text": "predicted_pv_w",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "wattpermsquared",
+          "decimals": 1,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "showPoints": "never",
+            "spanNulls": false,
+            "axisPlacement": "auto",
+            "axisLabel": "日射 [W/m²]",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "irradiance_w_m2"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "短波放射・瞬時値"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "pluginVersion": "13.2.3"
+    },
+    {
+      "id": 23,
+      "type": "table",
+      "title": "BWSC2025 ルートイベント / トラブル・停止記録",
+      "description": "公式ルートノート・大会タイムラインから整理した2025年記録です。イベント位置は人間運転ログ時の記録で、MPC走行後の発生時刻/距離を予測したものではありません。",
+      "gridPos": {
+        "x": 0,
+        "y": 56,
+        "w": 24,
+        "h": 12
+      },
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "yata-local-api"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "yata-local-api"
+          },
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "root_selector": "",
+          "url": "http://127.0.0.1:8123/api/events",
+          "url_options": {
+            "method": "GET",
+            "data": "",
+            "body_type": "",
+            "body_content_type": "",
+            "body_graphql_query": ""
+          },
+          "columns": [
+            {
+              "selector": "day",
+              "text": "Day",
+              "type": "string"
+            },
+            {
+              "selector": "start_local",
+              "text": "時刻",
+              "type": "string"
+            },
+            {
+              "selector": "event_type",
+              "text": "種別",
+              "type": "string"
+            },
+            {
+              "selector": "event_label",
+              "text": "記録",
+              "type": "string"
+            },
+            {
+              "selector": "distance_m",
+              "text": "距離 m",
+              "type": "number"
+            },
+            {
+              "selector": "distance_quality",
+              "text": "位置根拠",
+              "type": "string"
+            },
+            {
+              "selector": "source",
+              "text": "出典",
+              "type": "string"
+            }
+          ],
+          "filters": [],
+          "global_query_id": "",
+          "alias": "",
+          "json_options": {
+            "columnar": false,
+            "root_is_not_array": false
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "color": {
+            "mode": "thresholds"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "countRows": false,
+          "fields": ""
+        }
+      },
+      "pluginVersion": "13.2.3"
+    }
+  ],
+  "links": [],
+  "liveNow": false
+}

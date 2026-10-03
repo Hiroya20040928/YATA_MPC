@@ -1,0 +1,338 @@
+{
+  "scope": "BWSC2025 road cruise candidate; complete days 1-5 used in LODO; Day6 held out from all clean-day fitting",
+  "auxiliary_total_w": 67.60000000000002,
+  "eligible_5s_rows": 15350,
+  "eligible_1minute_bins": 1322,
+  "minute_bin_filter": "at least 6 eligible 5-second rows per local minute",
+  "candidate": "adds separate nonnegative coefficients for positive and negative acceleration mechanical power m*a*v; uses provided 314 kg floor-mass proxy",
+  "baseline": "same 1-minute sample and Student-t fit, with no inertial terms",
+  "summary_clean_lodo": {
+    "one_minute": {
+      "signed_inertia": {
+        "mean_day_mae_w": 125.53745455170042,
+        "mean_day_rmse_w": 170.62604434356447,
+        "mean_day_bias_w": 22.296004375404436,
+        "folds": 5
+      },
+      "steady": {
+        "mean_day_mae_w": 137.76496521636955,
+        "mean_day_rmse_w": 182.38390655672816,
+        "mean_day_bias_w": 23.339186068597304,
+        "folds": 5
+      }
+    },
+    "five_second": {
+      "signed_inertia": {
+        "mean_day_mae_w": 177.74828318623494,
+        "mean_day_rmse_w": 244.60740350616015,
+        "mean_day_bias_w": 23.251452437421875,
+        "folds": 5
+      },
+      "steady": {
+        "mean_day_mae_w": 179.20058272393325,
+        "mean_day_rmse_w": 244.52819021907573,
+        "mean_day_bias_w": 22.692350719405876,
+        "folds": 5
+      }
+    }
+  },
+  "folds_minute": [
+    {
+      "held_out_day": 1,
+      "model": "steady",
+      "n": 324,
+      "mae_w": 178.84569401692826,
+      "rmse_w": 225.31822508489782,
+      "bias_measured_minus_model_w": 150.55331868528583,
+      "p90_abs_error_w": 362.14478271974315,
+      "train_minute_bins": 794,
+      "test_minute_bins": 324,
+      "coefficients_json": "{\"aero_basis_w\": 0.23075061564181726, \"grade_basis_w\": 0.33156170236787463, \"roll_basis_w\": 3.0755231315916514}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 1,
+      "model": "signed_inertia",
+      "n": 324,
+      "mae_w": 144.41391663167676,
+      "rmse_w": 179.35915273781202,
+      "bias_measured_minus_model_w": 105.64421170970606,
+      "p90_abs_error_w": 297.78480291401326,
+      "train_minute_bins": 794,
+      "test_minute_bins": 324,
+      "coefficients_json": "{\"accel_negative_w\": 0.48288603554907167, \"accel_positive_w\": 0.6990100006954177, \"aero_basis_w\": 0.3262219378403484, \"grade_basis_w\": 0.3679689564232885, \"roll_basis_w\": 2.8753033462687565}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 2,
+      "model": "steady",
+      "n": 159,
+      "mae_w": 108.31616665393771,
+      "rmse_w": 152.59877943429063,
+      "bias_measured_minus_model_w": -28.179431667336992,
+      "p90_abs_error_w": 230.01779224087392,
+      "train_minute_bins": 959,
+      "test_minute_bins": 159,
+      "coefficients_json": "{\"aero_basis_w\": 1.1149826726366612, \"grade_basis_w\": 0.4738141475153036, \"roll_basis_w\": 1.7502856275978376}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 2,
+      "model": "signed_inertia",
+      "n": 159,
+      "mae_w": 104.36007759909933,
+      "rmse_w": 151.327490923105,
+      "bias_measured_minus_model_w": -31.814887985650007,
+      "p90_abs_error_w": 217.11674549119073,
+      "train_minute_bins": 959,
+      "test_minute_bins": 159,
+      "coefficients_json": "{\"accel_negative_w\": 0.542555292030644, \"accel_positive_w\": 0.7706279206634894, \"aero_basis_w\": 1.2827638527141585, \"grade_basis_w\": 0.584260233114691, \"roll_basis_w\": 1.36158973591812}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 3,
+      "model": "steady",
+      "n": 356,
+      "mae_w": 98.77494480162548,
+      "rmse_w": 142.16864492088374,
+      "bias_measured_minus_model_w": 9.614644072789613,
+      "p90_abs_error_w": 207.61212370165265,
+      "train_minute_bins": 762,
+      "test_minute_bins": 356,
+      "coefficients_json": "{\"aero_basis_w\": 1.1077877598092558, \"grade_basis_w\": 0.47844384192500117, \"roll_basis_w\": 1.7235169354131958}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 3,
+      "model": "signed_inertia",
+      "n": 356,
+      "mae_w": 104.92810988290978,
+      "rmse_w": 147.878046501169,
+      "bias_measured_minus_model_w": 44.17100870283915,
+      "p90_abs_error_w": 199.7120865629692,
+      "train_minute_bins": 762,
+      "test_minute_bins": 356,
+      "coefficients_json": "{\"accel_negative_w\": 0.47376926579023165, \"accel_positive_w\": 0.8280752789469832, \"aero_basis_w\": 1.4101891206304866, \"grade_basis_w\": 0.5921981640772039, \"roll_basis_w\": 1.0191287690508455}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 4,
+      "model": "steady",
+      "n": 90,
+      "mae_w": 130.04101783677064,
+      "rmse_w": 171.45495732826018,
+      "bias_measured_minus_model_w": 13.521042083039356,
+      "p90_abs_error_w": 294.92651879155864,
+      "train_minute_bins": 1028,
+      "test_minute_bins": 90,
+      "coefficients_json": "{\"aero_basis_w\": 1.0764192468480231, \"grade_basis_w\": 0.4835239250330458, \"roll_basis_w\": 1.7839466531329726}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 4,
+      "model": "signed_inertia",
+      "n": 90,
+      "mae_w": 113.56788599559782,
+      "rmse_w": 161.51928777686703,
+      "bias_measured_minus_model_w": 10.169232115561046,
+      "p90_abs_error_w": 283.3902474585814,
+      "train_minute_bins": 1028,
+      "test_minute_bins": 90,
+      "coefficients_json": "{\"accel_negative_w\": 0.4509666652848926, \"accel_positive_w\": 0.7857825578441205, \"aero_basis_w\": 1.2078070787092536, \"grade_basis_w\": 0.5673390458540271, \"roll_basis_w\": 1.4475080481374036}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 5,
+      "model": "steady",
+      "n": 189,
+      "mae_w": 172.8470027725857,
+      "rmse_w": 220.37892601530834,
+      "bias_measured_minus_model_w": -28.813642830791295,
+      "p90_abs_error_w": 352.17759210450475,
+      "train_minute_bins": 929,
+      "test_minute_bins": 189,
+      "coefficients_json": "{\"aero_basis_w\": 0.9540436922956608, \"grade_basis_w\": 0.4874404066046408, \"roll_basis_w\": 2.021051212735936}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 5,
+      "model": "signed_inertia",
+      "n": 189,
+      "mae_w": 160.41728264921846,
+      "rmse_w": 213.04624377886933,
+      "bias_measured_minus_model_w": -16.689542665434068,
+      "p90_abs_error_w": 305.09009745563554,
+      "train_minute_bins": 929,
+      "test_minute_bins": 189,
+      "coefficients_json": "{\"accel_negative_w\": 0.42895983542099664, \"accel_positive_w\": 0.7461527234193361, \"aero_basis_w\": 1.1154744274392585, \"grade_basis_w\": 0.5775704965928937, \"roll_basis_w\": 1.6346145739647004}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 6,
+      "model": "steady",
+      "n": 204,
+      "mae_w": 181.70300784400615,
+      "rmse_w": 233.7849242413743,
+      "bias_measured_minus_model_w": 110.56602781951119,
+      "p90_abs_error_w": 387.00493392704686,
+      "train_minute_bins": 1118,
+      "test_minute_bins": 204,
+      "coefficients_json": "{\"aero_basis_w\": 1.0198174556166806, \"grade_basis_w\": 0.4632743049603952, \"roll_basis_w\": 1.8808004159978307}",
+      "validation_grain": "1-minute mean; one race day held out"
+    },
+    {
+      "held_out_day": 6,
+      "model": "signed_inertia",
+      "n": 204,
+      "mae_w": 170.24184772158875,
+      "rmse_w": 221.6213457971327,
+      "bias_measured_minus_model_w": 91.91607414610957,
+      "p90_abs_error_w": 343.08103389240915,
+      "train_minute_bins": 1118,
+      "test_minute_bins": 204,
+      "coefficients_json": "{\"accel_negative_w\": 0.44665821679786566, \"accel_positive_w\": 0.774381796405538, \"aero_basis_w\": 1.1722162126605207, \"grade_basis_w\": 0.5559420248485057, \"roll_basis_w\": 1.509629645201979}",
+      "validation_grain": "1-minute mean; one race day held out"
+    }
+  ],
+  "folds_5s_descriptive": [
+    {
+      "held_out_day": 1,
+      "model": "steady",
+      "n": 3660,
+      "mae_w": 213.41978121564776,
+      "rmse_w": 284.0663356665949,
+      "bias_measured_minus_model_w": 149.78336509127467,
+      "p90_abs_error_w": 471.1789903176794,
+      "test_5s_rows": 3660,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 1,
+      "model": "signed_inertia",
+      "n": 3660,
+      "mae_w": 184.67650750923318,
+      "rmse_w": 239.46269656494033,
+      "bias_measured_minus_model_w": 109.7059167570246,
+      "p90_abs_error_w": 385.0940451983597,
+      "test_5s_rows": 3660,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 2,
+      "model": "steady",
+      "n": 1897,
+      "mae_w": 152.58182389268526,
+      "rmse_w": 226.50808914827323,
+      "bias_measured_minus_model_w": -29.647220781655896,
+      "p90_abs_error_w": 336.79279318382265,
+      "test_5s_rows": 1897,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 2,
+      "model": "signed_inertia",
+      "n": 1897,
+      "mae_w": 151.8612220671628,
+      "rmse_w": 228.2962518741678,
+      "bias_measured_minus_model_w": -32.325326400791916,
+      "p90_abs_error_w": 326.2044950286866,
+      "test_5s_rows": 1897,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 3,
+      "model": "steady",
+      "n": 4208,
+      "mae_w": 126.90261756263426,
+      "rmse_w": 187.33292376482794,
+      "bias_measured_minus_model_w": 9.392619364178804,
+      "p90_abs_error_w": 282.5935516725254,
+      "test_5s_rows": 4208,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 3,
+      "model": "signed_inertia",
+      "n": 4208,
+      "mae_w": 145.19260124620524,
+      "rmse_w": 211.9257608587785,
+      "bias_measured_minus_model_w": 44.414042474868786,
+      "p90_abs_error_w": 310.34126021235465,
+      "test_5s_rows": 4208,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 4,
+      "model": "steady",
+      "n": 1050,
+      "mae_w": 180.14808241929154,
+      "rmse_w": 232.5927172822144,
+      "bias_measured_minus_model_w": 10.762783611091207,
+      "p90_abs_error_w": 387.37402403470713,
+      "test_5s_rows": 1050,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 4,
+      "model": "signed_inertia",
+      "n": 1050,
+      "mae_w": 186.652430876678,
+      "rmse_w": 246.37648166451953,
+      "bias_measured_minus_model_w": 9.992220682738514,
+      "p90_abs_error_w": 420.46662798040484,
+      "test_5s_rows": 1050,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 5,
+      "model": "steady",
+      "n": 2213,
+      "mae_w": 222.95060852940753,
+      "rmse_w": 292.1408852334682,
+      "bias_measured_minus_model_w": -26.8297936878594,
+      "p90_abs_error_w": 478.57027181211015,
+      "test_5s_rows": 2213,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 5,
+      "model": "signed_inertia",
+      "n": 2213,
+      "mae_w": 220.35865423189557,
+      "rmse_w": 296.9758265683946,
+      "bias_measured_minus_model_w": -15.529591326730607,
+      "p90_abs_error_w": 484.4216031891135,
+      "test_5s_rows": 2213,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 6,
+      "model": "steady",
+      "n": 2322,
+      "mae_w": 222.55354620023118,
+      "rmse_w": 298.35513152324364,
+      "bias_measured_minus_model_w": 107.79956439938117,
+      "p90_abs_error_w": 459.8481407372648,
+      "test_5s_rows": 2322,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    },
+    {
+      "held_out_day": 6,
+      "model": "signed_inertia",
+      "n": 2322,
+      "mae_w": 223.21776941457935,
+      "rmse_w": 302.2044637342457,
+      "bias_measured_minus_model_w": 91.61689432073143,
+      "p90_abs_error_w": 481.45804549972826,
+      "test_5s_rows": 2322,
+      "validation_grain": "eligible 5-second rows; one race day held out; descriptive due autocorrelation"
+    }
+  ],
+  "decision": "adopt only if one-minute leave-one-day-out mean MAE improves and signed-inertia coefficients are stable in sign/magnitude; otherwise retain baseline and flag derivative as unidentifiable/noisy",
+  "limitations": [
+    "5-second logged speed is integer km/h and differentiated after smoothing; acceleration remains noisy.",
+    "Day folds protect temporal leakage, but source points remain serially correlated.",
+    "Coefficients are effective electrical-bus terms, not standalone motor efficiency or true vehicle mass.",
+    "The 5-second MAE is descriptive; independent evidence grain is the held-out day and 1-minute aggregation."
+  ]
+}

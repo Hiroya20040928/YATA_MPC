@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yata-mpc.local/schemas/race-schedule-v1.schema.json",
+  "title": "YATA MPC active road-day schedule v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schedule_id", "route_id", "valid_from_utc", "valid_until_utc",
+    "day_end_distance_m", "deadline_utc", "reserve_pct", "control_stops"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "schedule_id": {"type": "string", "minLength": 1, "maxLength": 80},
+    "route_id": {"type": "string", "minLength": 1, "maxLength": 120},
+    "valid_from_utc": {"type": "string", "format": "date-time"},
+    "valid_until_utc": {"type": "string", "format": "date-time"},
+    "day_end_distance_m": {"type": "number", "exclusiveMinimum": 0},
+    "deadline_utc": {"type": "string", "format": "date-time"},
+    "reserve_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "control_stops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["distance_m", "dwell_s"],
+        "properties": {
+          "distance_m": {"type": "number", "exclusiveMinimum": 0},
+          "dwell_s": {"type": "number", "minimum": 0, "maximum": 7200}
+        }
+      }
+    }
+  }
+}

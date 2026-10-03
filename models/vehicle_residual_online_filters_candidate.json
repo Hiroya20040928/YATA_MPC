@@ -1,0 +1,41 @@
+{
+  "model_type": "past_only_selected_online_residual_filter",
+  "stage": "shadow_candidate_not_connected_to_replay_grafana_or_commands",
+  "production_ready": false,
+  "best_candidate_oof_metrics": {
+    "model": "adaptive_filter_selection",
+    "pooled_mae_w": 61.3024964745094,
+    "pooled_p90_abs_error_w": 135.74918012285846,
+    "pooled_bias_w": 5.586443835466856,
+    "improvement_pct": 12.679280644052223,
+    "clean_day_wins": 5,
+    "warm_state_day_wins": 5,
+    "macro_day_mae_w": 61.704607724446966,
+    "day6_p90_w": 167.5469536790663,
+    "tail_guard_pass": true
+  },
+  "selected_configuration_counts": {
+    "median(9),cap=100W": 17,
+    "median(9),cap=75W": 15,
+    "median(6),cap=100W": 9,
+    "theil_sen(24),cap=30W": 9,
+    "median(9),cap=30W": 8,
+    "theil_sen(24),cap=50W": 8,
+    "median(9),cap=50W": 6,
+    "ewma(0.35),cap=75W": 4,
+    "theil_sen(6),cap=30W": 4,
+    "theil_sen(12),cap=50W": 3,
+    "ewma(0.5),cap=30W": 3,
+    "median(9),cap=150W": 3,
+    "theil_sen(24),cap=150W": 3,
+    "theil_sen(6),cap=100W": 3,
+    "theil_sen(12),cap=100W": 3,
+    "theil_sen(24),cap=100W": 2,
+    "theil_sen(24),cap=75W": 2,
+    "theil_sen(12),cap=150W": 2,
+    "ewma(0.2),cap=50W": 1,
+    "median(6),cap=30W": 1,
+    "median(3),cap=100W": 1
+  },
+  "validation_scope": "nested prequential block-forward evaluation; filter choice and cap use prior residual one-step errors only; each current block remains untouched until scored"
+}

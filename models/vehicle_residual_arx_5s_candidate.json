@@ -1,0 +1,77 @@
+{
+  "model_type": "causal_online_arx_residual_candidate",
+  "stage": "shadow_candidate_not_connected_to_replay_grafana_or_commands",
+  "production_ready": false,
+  "metrics": {
+    "physics_baseline": {
+      "n": 13711,
+      "mae_w": 219.80543724581457,
+      "p90_abs_error_w": 509.2890215608411,
+      "bias_w": 13.36446859317863
+    },
+    "past_only_residual_filter": {
+      "n": 13711,
+      "mae_w": 122.44962224425566,
+      "p90_abs_error_w": 280.9893854596292,
+      "bias_w": 4.15015322114781
+    },
+    "causal_arx": {
+      "n": 13711,
+      "mae_w": 121.61293257419024,
+      "p90_abs_error_w": 282.7237939815042,
+      "bias_w": 3.606884968812814
+    },
+    "improvement_pct": 44.67246393082302,
+    "day_wins": 5,
+    "warm_state_day_wins": 5
+  },
+  "day6_stress": {
+    "baseline": {
+      "n": 2531,
+      "mae_w": 296.3408107287589,
+      "p90_abs_error_w": 647.6267033459487,
+      "bias_w": 79.1003347294761
+    },
+    "causal_arx": {
+      "n": 2531,
+      "mae_w": 155.03163389038772,
+      "p90_abs_error_w": 355.4057202252019,
+      "bias_w": 0.6460309610812929
+    }
+  },
+  "validation": "nested past-only 5-second one-step predictions; candidate combines lagged residual error with causal signed inertial power",
+  "selected_configuration_counts": {
+    "accel_alpha=0.2,window=300,cap=500W": 1320,
+    "accel_alpha=0.2,window=300,cap=1000W": 1296,
+    "accel_alpha=0.5,window=300,cap=1000W": 1057,
+    "accel_alpha=0.2,window=300,cap=300W": 869,
+    "accel_alpha=0.5,window=120,cap=1000W": 720,
+    "accel_alpha=0.5,window=300,cap=500W": 684,
+    "accel_alpha=0.5,window=300,cap=300W": 660,
+    "accel_alpha=0.2,window=120,cap=1000W": 540,
+    "accel_alpha=0.35,window=300,cap=1000W": 540,
+    "accel_alpha=0.2,window=120,cap=500W": 540,
+    "accel_alpha=0.35,window=300,cap=300W": 480,
+    "accel_alpha=0.5,window=120,cap=500W": 360,
+    "accel_alpha=0.35,window=300,cap=500W": 360,
+    "accel_alpha=0.2,window=120,cap=300W": 360,
+    "accel_alpha=0.35,window=120,cap=1000W": 360,
+    "accel_alpha=0.2,window=60,cap=1000W": 300,
+    "accel_alpha=0.5,window=60,cap=1000W": 240,
+    "accel_alpha=0.2,window=60,cap=300W": 240,
+    "accel_alpha=0.2,window=60,cap=500W": 240,
+    "accel_alpha=0.35,window=120,cap=300W": 240,
+    "accel_alpha=0.5,window=120,cap=300W": 240,
+    "accel_alpha=0.5,window=60,cap=500W": 205,
+    "accel_alpha=0.35,window=60,cap=500W": 120,
+    "accel_alpha=0.2,window=300,cap=100W": 120,
+    "accel_alpha=0.5,window=60,cap=300W": 120,
+    "accel_alpha=0.35,window=60,cap=1000W": 120,
+    "accel_alpha=0.35,window=120,cap=500W": 60,
+    "accel_alpha=0.2,window=60,cap=100W": 60,
+    "accel_alpha=0.35,window=300,cap=100W": 60,
+    "accel_alpha=0.5,window=120,cap=100W": 60,
+    "accel_alpha=0.2,window=120,cap=100W": 60
+  },
+  "warning": "314 kg is a design-mass proxy, not confirmed loaded mass. Coefficients are predictive and do not identify actual inertia or efficiency."
+}

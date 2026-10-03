@@ -1,0 +1,32 @@
+# Python environments and generated caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Local credentials and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Raw telemetry, downloaded weather, and generated replay output.
+# Keep only the small reference DEM needed to import the live API.
+/data/*
+!/data/input/
+/data/input/*
+!/data/input/route/
+/data/input/route/*
+!/data/input/route/route_100m_dem.csv
+
+# Generated numerical tables, images, and large audit exports are local outputs.
+/reports/*
+!/reports/*.md
+
+# Source literature and user-provided scans/workbooks are not redistributed.
+/references/
+/notebooks/
+
+# Local runtime state
+grafana-data/

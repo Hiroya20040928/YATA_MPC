@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yata-mpc.local/schemas/route-weather-v1.schema.json",
+  "title": "YATA MPC route/time weather grid v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["route_id", "issue_time_utc", "points"],
+  "properties": {
+    "route_id": {"type": "string", "minLength": 1, "maxLength": 120},
+    "issue_time_utc": {"type": "string", "format": "date-time"},
+    "points": {
+      "type": "array", "minItems": 2, "maxItems": 20000,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": [
+          "distance_m", "time_utc", "temperature_2m_c", "wind_speed_10m_ms",
+          "wind_direction_10m_deg", "surface_pressure_pa", "ghi_w_m2", "dni_w_m2", "dhi_w_m2"
+        ],
+        "properties": {
+          "distance_m": {"type": "number", "minimum": 0},
+          "time_utc": {"type": "string", "format": "date-time"},
+          "temperature_2m_c": {"type": "number", "minimum": -80, "maximum": 70},
+          "wind_speed_10m_ms": {"type": "number", "minimum": 0, "maximum": 100},
+          "wind_direction_10m_deg": {"type": "number", "minimum": 0, "maximum": 360},
+          "surface_pressure_pa": {"type": "number", "exclusiveMinimum": 0, "maximum": 150000},
+          "ghi_w_m2": {"type": "number", "minimum": 0, "maximum": 2000},
+          "dni_w_m2": {"type": "number", "minimum": 0, "maximum": 2000},
+          "dhi_w_m2": {"type": "number", "minimum": 0, "maximum": 2000}
+        }
+      }
+    }
+  }
+}

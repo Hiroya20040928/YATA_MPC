@@ -1,0 +1,161 @@
+{
+  "scope": "BWSC2025 eligible-interval nested day-blocked tuning; advisory-only, counterfactual",
+  "selected_by": "most frequent outer-fold inner-selected setting; inner choices within 0.5% of best saving favor lower complexity",
+  "lower_update_s": 1.0,
+  "lower_prediction_horizon_s": 20.0,
+  "nested_selected_lower_update_s": 5.0,
+  "empirical_acceleration_quantile": 0.95,
+  "speed_reference_resolution_kmh": 1.0,
+  "acceleration_weight": 10.0,
+  "move_rate_weight": 16.0,
+  "operational_override_reason": "recompute on every new 1 Hz sample as requested; 2025 paired interval simulation differs from nested-selected 5 s by <0.03% of eligible human time",
+  "nested_best_oof_saving_min": 20.39615427759127,
+  "operational_1hz_oof_saving_min": 20.125328404903925,
+  "upper_replan_s": 300,
+  "upper_replan_policy": "every 300 s plus immediate event, route displacement >=10 km, forecast issue change, or tracking/energy contract breach",
+  "upper_replan_evidence_status": "provisional design: first-hour fixed-log probe compared 5/10/15/30/60 min; 5 min produced 32 target changes across 62 within-day transitions, 24/68 no-advisory results, and p95 solve wall time 2.73 s; no causal race-time or optimal-cadence claim",
+  "upper_solver_time_limit_s": 5.0,
+  "upper_solver_time_limit_evidence_status": "provisional runtime candidate: 18 first-hour 5-min cases with a feasible incumbent but unproven optimality at 2 s were retried at 5 s; 16 were proven optimal and 2 remained time-limited feasible; no no-advisory cases, no target changes, median modeled-time improvement 0 min, probe wall p95 5.76 s/max 5.79 s; historical replay remains pinned to 2 s",
+  "upper_speed_candidate_step_kmh": 1.0,
+  "upper_speed_step_evidence": "retained at 1 km/h: with a 5 s MILP limit on six first-decision states, 0.5 km/h yielded 1 optimal/2 time-limited/3 no-advisory and 1 km/h yielded 3 optimal/0 time-limited/3 no-advisory; median solve wall time 3.14 vs 1.43 s, while modeled time difference on jointly feasible days was at most 0.38 s/day; 5 s log quantization and 50.5-53.3 W model MAE do not support finer ranking",
+  "lower_speed_advisory_resolution_kmh": 1.0,
+  "actuator_model": "min(M2096 ECO_LO DUTY=1 flat-road torque-derived acceleration ceiling, day-blocked empirical speed-ramp quantile); deceleration from observed speed ramps",
+  "inferred_accel_cap_mps2_day1_5": 0.16666666666666666,
+  "inferred_decel_cap_mps2_day1_5": 0.16666666666666666,
+  "fit_samples_positive": 3637,
+  "fit_samples_negative": 3498,
+  "outer_fold_selection": [
+    {
+      "outer_held_out_day": 1,
+      "inner_selected_params": [
+        5.0,
+        20.0,
+        0.95,
+        1.0,
+        [
+          10.0,
+          16.0
+        ]
+      ],
+      "lower_update_s": 5.0,
+      "prediction_horizon_s": 20.0,
+      "accel_quantile": 0.95,
+      "speed_resolution_kmh": 1.0,
+      "accel_weight": 10.0,
+      "move_rate_weight": 16.0,
+      "train_positive_samples": 2338,
+      "train_negative_samples": 2298,
+      "train_accel_cap_mps2": 0.11111111111111112,
+      "train_decel_cap_mps2": 0.11111111111111112,
+      "outer_test_intervals": 19,
+      "outer_test_saving_min": 1.9076241692045373
+    },
+    {
+      "outer_held_out_day": 2,
+      "inner_selected_params": [
+        5.0,
+        20.0,
+        0.95,
+        1.0,
+        [
+          10.0,
+          16.0
+        ]
+      ],
+      "lower_update_s": 5.0,
+      "prediction_horizon_s": 20.0,
+      "accel_quantile": 0.95,
+      "speed_resolution_kmh": 1.0,
+      "accel_weight": 10.0,
+      "move_rate_weight": 16.0,
+      "train_positive_samples": 3265,
+      "train_negative_samples": 3151,
+      "train_accel_cap_mps2": 0.16666666666666666,
+      "train_decel_cap_mps2": 0.16666666666666666,
+      "outer_test_intervals": 3,
+      "outer_test_saving_min": 1.75334881460656
+    },
+    {
+      "outer_held_out_day": 3,
+      "inner_selected_params": [
+        5.0,
+        20.0,
+        0.95,
+        1.0,
+        [
+          10.0,
+          16.0
+        ]
+      ],
+      "lower_update_s": 5.0,
+      "prediction_horizon_s": 20.0,
+      "accel_quantile": 0.95,
+      "speed_resolution_kmh": 1.0,
+      "accel_weight": 10.0,
+      "move_rate_weight": 16.0,
+      "train_positive_samples": 2881,
+      "train_negative_samples": 2746,
+      "train_accel_cap_mps2": 0.16666666666666666,
+      "train_decel_cap_mps2": 0.16666666666666666,
+      "outer_test_intervals": 17,
+      "outer_test_saving_min": 17.65572062601006
+    },
+    {
+      "outer_held_out_day": 4,
+      "inner_selected_params": [
+        5.0,
+        20.0,
+        0.95,
+        1.0,
+        [
+          10.0,
+          16.0
+        ]
+      ],
+      "lower_update_s": 5.0,
+      "prediction_horizon_s": 20.0,
+      "accel_quantile": 0.95,
+      "speed_resolution_kmh": 1.0,
+      "accel_weight": 10.0,
+      "move_rate_weight": 16.0,
+      "train_positive_samples": 3106,
+      "train_negative_samples": 2961,
+      "train_accel_cap_mps2": 0.16666666666666666,
+      "train_decel_cap_mps2": 0.16666666666666666,
+      "outer_test_intervals": 12,
+      "outer_test_saving_min": -27.53773180208669
+    },
+    {
+      "outer_held_out_day": 5,
+      "inner_selected_params": [
+        5.0,
+        20.0,
+        0.95,
+        1.0,
+        [
+          10.0,
+          16.0
+        ]
+      ],
+      "lower_update_s": 5.0,
+      "prediction_horizon_s": 20.0,
+      "accel_quantile": 0.95,
+      "speed_resolution_kmh": 1.0,
+      "accel_weight": 10.0,
+      "move_rate_weight": 16.0,
+      "train_positive_samples": 2958,
+      "train_negative_samples": 2836,
+      "train_accel_cap_mps2": 0.16666666666666666,
+      "train_decel_cap_mps2": 0.16666666666666666,
+      "outer_test_intervals": 11,
+      "outer_test_saving_min": 26.6171924698568
+    }
+  ],
+  "limitations": [
+    "ECO_LO bench mode is not confirmed equivalent to installed PWM+ECO and its sweep is not a throttle map.",
+    "The historical speed derivative identifies a driver-plus-vehicle envelope, not actuator lag or PWM response.",
+    "No speed-step response or logged actuator request exists, so response time constant and jerk limit remain unidentifiable.",
+    "The eligible-interval time ranking holds each previously solved upper target fixed and does not rerun the upper energy MILP on counterfactual arrival times.",
+    "The fold metrics are grouped by race day; points within a day are autocorrelated."
+  ]
+}

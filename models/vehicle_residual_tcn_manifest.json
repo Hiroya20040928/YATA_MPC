@@ -1,0 +1,77 @@
+{
+  "model": "models/vehicle_residual_tcn_maxfit.pt",
+  "architecture": "causal dilated temporal convolution network; 32-step window, dilations 1/2/4/8/16, SmoothL1 training; one-step residual prediction",
+  "selected": {
+    "width": 16,
+    "dropout": 0.1,
+    "epochs": 30
+  },
+  "feature_names": [
+    "speed_kmh",
+    "distance_km",
+    "route_grade_smoothed_pct",
+    "temperature_2m",
+    "wind_speed_10m",
+    "headwind_mps",
+    "crosswind_mps",
+    "shortwave_radiation_instant",
+    "direct_radiation_instant",
+    "diffuse_radiation_instant",
+    "global_tilted_irradiance_instant",
+    "pressure_msl",
+    "cloud_cover",
+    "residual_lag_1",
+    "residual_lag_2",
+    "residual_lag_3",
+    "residual_lag_6",
+    "residual_lag_12",
+    "residual_mean_6",
+    "residual_mean_24"
+  ],
+  "normalization": "imputer and scaler fitted on Days1-5 first60% for OOF; serialized feature scalers in checkpoint",
+  "inference": "provide a 64-row causal feature window; residual lags are previous measured errors only",
+  "fit_rows_final": 16242,
+  "validation": {
+    "physical_baseline": {
+      "n": 2744,
+      "mae_w": 198.28744990351194,
+      "rmse_w": 314.57280437819423,
+      "p90_abs_error_w": 440.8668579101571,
+      "bias_w": -8.642653327866975
+    },
+    "tcn": {
+      "n": 2744,
+      "mae_w": 151.21052361323984,
+      "rmse_w": 277.1573990861035,
+      "p90_abs_error_w": 367.04664802551275,
+      "bias_w": 12.128453746321272
+    },
+    "per_day": {
+      "1": {
+        "n": 819,
+        "mae_w": 134.99826049804688,
+        "p90_abs_error_w": 315.1841125488281
+      },
+      "2": {
+        "n": 385,
+        "mae_w": 184.7678985595703,
+        "p90_abs_error_w": 449.322509765625
+      },
+      "3": {
+        "n": 859,
+        "mae_w": 147.0691680908203,
+        "p90_abs_error_w": 321.8788757324219
+      },
+      "4": {
+        "n": 216,
+        "mae_w": 168.03668212890625,
+        "p90_abs_error_w": 460.4786376953125
+      },
+      "5": {
+        "n": 465,
+        "mae_w": 151.81529235839844,
+        "p90_abs_error_w": 363.6117248535156
+      }
+    }
+  }
+}
